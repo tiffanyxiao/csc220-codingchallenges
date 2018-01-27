@@ -4,11 +4,13 @@ Date: January 25, 2018
 
 Objective of challenge:
 Write a short program that takes in a string and
-prints a well-formed banner to the command line
+prints a well-formed banner to the command line:
 ***********************
 * <any length string> *
 ***********************
 
+Assumption:
+Characters have uniform width.
 
 Auther notes:
 In order to address the edge case in which the user input is longer than the terminal size (thus, causing a strange
@@ -23,6 +25,7 @@ def error():
         main()
 
 def main():
+    ''' function to get user input, ask user for number of characters and print message with banner'''
     # get user input
     user_input = raw_input("Input string below: \n")
 
@@ -65,7 +68,6 @@ def main():
                     print("* "+user_input[num_splits*num_chars:len_input]+(" "*(num_chars-(len_input-(num_splits*num_chars)))+" *"))
                 # print third line of banner
                 print("*"*num_stars)
-
 
     except NameError:
         error()
