@@ -11,7 +11,9 @@ prints a well-formed banner to the command line
 
 
 Auther notes:
-In order to address the edge case in which the user input is longer than the terminal size (thus, causing a strange looking "banner"), I will allow the user to input a limit for the number of characters for each line if they choose to do so.
+In order to address the edge case in which the user input is longer than the terminal size (thus, causing a strange
+looking "banner"), I will allow the user to input a limit for the number of characters for each line if they choose
+to do so.
 '''
 
 def error():
