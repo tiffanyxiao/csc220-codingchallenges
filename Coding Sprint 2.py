@@ -38,7 +38,6 @@ class Contact():
 
     # function to check name format
     def check_name(self):
-
         # binary value to keep track if the name is valid
         check = True
 
