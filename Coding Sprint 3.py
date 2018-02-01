@@ -17,6 +17,7 @@ def file_len(fname):
     ''' Function that counts the number of non-blank lines in given file'''
     non_blank_count = 0
 
+    # count each line in the file
     with open(fname) as infp:
         for line in infp:
             # don't count whitespace and comments
