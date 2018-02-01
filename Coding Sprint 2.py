@@ -121,7 +121,7 @@ def error(addContact):
         addContact = False
         return addContact
     else:
-        error()
+        error(addContact)
 
 def main():
     ''' Main function that asks user for contact information and checks inputs'''
