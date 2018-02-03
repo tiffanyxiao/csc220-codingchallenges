@@ -36,16 +36,11 @@ def compare(file1, file2):
     a = dict((lines[i], i) for i in range(len(lines)))
     with open(file2) as file:
         lines2 = [line.strip() for line in file]
-    b = dict((lines2[i], i) for i in range(len(lines)))
+    b = dict((lines2[i], i) for i in range(len(lines2)))
     # find intersection of the dictionaries
     for key in a.keys():
         if key in b.keys():
             print("True")
-        
-
-
-
-
 
 
 def main():
@@ -54,7 +49,7 @@ def main():
     # ask user for path
     #path = raw_input("Please indicate path to directory below: \n")
     # test path: path '/Users/tiffanyxiao/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
-    path = "/Users/karensantamaria/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
+    path = "/Users/tiffanyxiao/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
 
     # identify all python files in directory
     text_files = [f for f in os.listdir(path) if f.endswith('.py')]
@@ -64,11 +59,6 @@ def main():
 
     for i in list(comb):
         compare(i[0], i[1])
-
-
-        #print(i)
-
-
 
 
 
