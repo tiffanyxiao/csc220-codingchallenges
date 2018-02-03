@@ -22,13 +22,39 @@ Description:
 import glob, os
 from itertools import combinations
 
+
+# def checkAll(path):
+
+
+
+
+
+
+def compare(file1, file2):
+    with open(file1) as file:
+        lines = [line.strip() for line in file]
+    a = dict((lines[i], i) for i in range(len(lines)))
+    with open(file2) as file:
+        lines2 = [line.strip() for line in file]
+    b = dict((lines2[i], i) for i in range(len(lines)))
+    # find intersection of the dictionaries
+    for key in a.keys():
+        if key in b.keys():
+            print("True")
+        
+
+
+
+
+
+
 def main():
     ''' Function that asks user for a directory, then prints all python file names and the number of lines in each file'''
 
     # ask user for path
     #path = raw_input("Please indicate path to directory below: \n")
-    # test path: path = '/Users/tiffanyxiao/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
-    path = "/Users/tiffanyxiao/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
+    # test path: path '/Users/tiffanyxiao/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
+    path = "/Users/karensantamaria/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
 
     # identify all python files in directory
     text_files = [f for f in os.listdir(path) if f.endswith('.py')]
@@ -37,31 +63,37 @@ def main():
     comb = combinations(text_files, 2) # currently only makes combinations with .py files
 
     for i in list(comb):
-        print i
+        compare(i[0], i[1])
 
 
-
-    # get two dictionary with line numbers as key and line as value
-    with open("testfile1.py") as file:
-        lines = [line.strip() for line in file]
-    a = dict((lines[i], i) for i in range(len(lines)))
-    with open("testfile2.py") as file:
-        lines2 = [line.strip() for line in file]
-    b = dict((lines2[i], i) for i in range(len(lines)))
-    # find intersection of the dictionaries
-    for key in a.keys():
-        if key in b.keys():
-            print("True")
+        #print(i)
 
 
 
 
 
+    # # get two dictionary with line numbers as key and line as value
+    # with open("testfile1.py") as file:
+    #     lines = [line.strip() for line in file]
+    # a = dict((lines[i], i) for i in range(len(lines)))
+    # with open("testfile2.py") as file:
+    #     lines2 = [line.strip() for line in file]
+    # b = dict((lines2[i], i) for i in range(len(lines)))
+    # # find intersection of the dictionaries
+    # for key in a.keys():
+    #     if key in b.keys():
+    #         print("True")
+    #         print(a[key] , "test test")
 
-    outfile = open('results.txt', 'wb')
-    for i in b:
-      print>>outfile, i
-    outfile.close()
+
+
+
+
+
+    # outfile = open('results.txt', 'wb')
+    # for i in b:
+    #     print(outfile, i)
+    # outfile.close()
 
     '''x = set([i.strip() for i in open('testfile1.py')])
     y = set([i.strip() for i in open('testfile2.py')])
