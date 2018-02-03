@@ -22,26 +22,62 @@ Description:
 import glob, os
 from itertools import combinations
 
+class Pair():
+    """ Class that is a pair object (a pair has two text file names, the matching line and the number of the line for both files) """
 
-# def checkAll(path):
+    def __init__(self, file1, file2, line, file1_num, file2_num):
+        """ initialize a pair object.
 
-
-
-
-
+        Parameters:
+        file1 - the first file inputted
+        file2 - the second file inputted
+        line - the matching line identified in both files
+        file1_num - the line number of the matching line in file 1
+        file2_num - the line number of the matching line in file 2
+        """
+        self.file1 = file1
+        self.file2 = file2
+        self.line = line
+        self.file1_num = file1_num
+        self.file2_num = file2_num
 
 def compare(file1, file2):
+    """ Function to compare two files and identify a matching line
+
+    Parameters:
+    file1 - the first file to check
+    file2 - the second file to check
+
+    Returns a list of all the pairs (instances of the Pair class) generated from the two files
+    """
+    pairs = []
+    # create a dictionary using file1 and file2
     with open(file1) as file:
         lines = [line.strip() for line in file]
     a = dict((lines[i], i) for i in range(len(lines)))
     with open(file2) as file:
         lines2 = [line.strip() for line in file]
     b = dict((lines2[i], i) for i in range(len(lines2)))
-    # find intersection of the dictionaries
+    # find the intersection of the dictionaries (matching keys) and make a Pair object with the intersections
     for key in a.keys():
         if key in b.keys():
-            print("True")
+            pair = Pair(file1, file2, key, a.get(key), b.get(key))
+            pairs.append(pair)
+    return pairs
 
+def printPairs(pairs):
+    ''' Function takes in a list of pairs between two files, and prints the pair in desired output
+
+    Parameters:
+    pairs - a list of pairs 
+    '''
+    print("-------------------------------------")
+    print("File 1: ", pairs[0].file1)
+    print("File 2: ", pairs[0].file2)
+    print("Number of identical lines: ", len(pairs))
+    print("-------------------------------------")
+    for pair in pairs:
+        print("*** ", pair.file1_num, pair.file2_num, pair.line)
 
 def main():
     ''' Function that asks user for a directory, then prints all python file names and the number of lines in each file'''
@@ -52,62 +88,18 @@ def main():
     path = "/Users/tiffanyxiao/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
 
     # identify all python files in directory
-    text_files = [f for f in os.listdir(path) if f.endswith('.py')]
+    text_files = [f for f in os.listdir(path)]
 
     # get all combinations of text_files
     comb = combinations(text_files, 2) # currently only makes combinations with .py files
 
+    all_pairs = []
+
     for i in list(comb):
-        compare(i[0], i[1])
+        all_pairs.append(compare(i[0], i[1]))
 
-
-
-    # # get two dictionary with line numbers as key and line as value
-    # with open("testfile1.py") as file:
-    #     lines = [line.strip() for line in file]
-    # a = dict((lines[i], i) for i in range(len(lines)))
-    # with open("testfile2.py") as file:
-    #     lines2 = [line.strip() for line in file]
-    # b = dict((lines2[i], i) for i in range(len(lines)))
-    # # find intersection of the dictionaries
-    # for key in a.keys():
-    #     if key in b.keys():
-    #         print("True")
-    #         print(a[key] , "test test")
-
-
-
-
-
-
-    # outfile = open('results.txt', 'wb')
-    # for i in b:
-    #     print(outfile, i)
-    # outfile.close()
-
-    '''x = set([i.strip() for i in open('testfile1.py')])
-    y = set([i.strip() for i in open('testfile2.py')])
-    z = x.intersection(y)
-    outfile = open('results.txt', 'wb')
-    for i in z:
-      print>>outfile, i
-    outfile.close()'''
-
-
-    # binary value if identical lines are found
-    '''identicalLine = False
-
-    # only print this when
-    while identicalLine = True:
-        print("-------------------------------------")
-        print("File 1: ")
-        print("File 2: ")
-        print("Number of identical lines: ")
-        print("-------------------------------------")
-
-
-    # print each file name and the number of lines in each file
-    for text_file in text_files:
-        print(text_file+" "+str(file_len(text_file)))'''
+    for pairs in all_pairs:
+        if pairs:
+            printPairs(pairs)
 
 main()
