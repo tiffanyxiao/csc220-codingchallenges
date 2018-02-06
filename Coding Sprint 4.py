@@ -12,7 +12,7 @@ Description:
 This program completes the main objective and the next two levels. It is a simple program that tests two functions.
 
 Further works:
-Perhaps implementing a calculator program would be a better way to test the program. 
+Perhaps implementing a calculator program would be a better way to test the program.
 '''
 
 def printdebugger(func):
@@ -22,22 +22,31 @@ def printdebugger(func):
         # variable to track number of indents needed (times printdebugger is called)
         printdebugger.calls += 1
 
-        print("    "*(printdebugger.calls-1)+"+ Start of "+func.__name__)                       # print start statement
+        print("    "*(printdebugger.calls-1)+"+Start of "+func.__name__)                       # print start statement
 
-        # print each parameter in args
-        print("    "*(printdebugger.calls-1)+"Parameters passed into "+func.__name__+": "),
-        for arg in args:
-            print(arg),
-        print("")
+        # print args and kwargs only if there are parameters
+        if (args) or (any(kwargs)):
+            # print each parameter in args
+            print("    "*(printdebugger.calls-1)+"Parameters passed into "+func.__name__+": "),
+            for arg in args:
+                print(arg),
+            for key, value in kwargs.items():
+                print ("(key: "+str(key)+", value: "+str(value)+")"),
+            print("")
 
         print("    "*(printdebugger.calls-1) + "Function output (if any):"),                    # print function output
-        func(*args)                                                                             # call function
+        func(*args, **kwargs)                                                                             # call function
         print("    "*(printdebugger.calls-1)+"-End of "+func.__name__)                          # print end statement
         # finished with this function, dedent
         printdebugger.calls -= 1
         return
     printdebugger.calls = 0
     return printdebugger_and_call
+
+@printdebugger
+def test2(**kwargs):
+    ''' Function to test kwargs in debugger and does nothing with it (for testing) '''
+    print("I love coding!")
 
 @printdebugger
 def test1(parameter1, parameter2):
@@ -51,3 +60,4 @@ def main():
     test1("test1","test2")
 
 main()
+test2(a = 5, b = 6, c = 7)
