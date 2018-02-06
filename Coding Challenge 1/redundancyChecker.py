@@ -23,41 +23,23 @@ Description:
 To fix:
 -Line numbers (currently counting line numbers after strip)
 -reducing garbage & improving efficiency
--removing the class to improve efficiency (print pair directly)
--create try & catch block for user input
+-close files
+-test against .py, .txt and .csv
+-remove test path
 '''
 import glob, os
 from itertools import combinations
 
-class Pair():
-    """ Class that is a pair object (a pair has two text file names, the matching line and the number of the line for both files) """
-
-    def __init__(self, file1, file2, line, file1_num, file2_num):
-        """ initialize a pair object.
-
-        Parameters:
-        file1 - the first file inputted
-        file2 - the second file inputted
-        line - the matching line identified in both files
-        file1_num - the line number of the matching line in file 1
-        file2_num - the line number of the matching line in file 2
-        """
-        self.file1 = file1
-        self.file2 = file2
-        self.line = line
-        self.file1_num = file1_num
-        self.file2_num = file2_num
-
 def compare(file1, file2):
-    """ Function to compare two files and identify a matching line
+    """ Function to compare two files and identify a matching line, then print the matching lines in desired format.
 
     Parameters:
     file1 - the first file to check
     file2 - the second file to check
-
-    Returns a list of all the pairs (instances of the Pair class) generated from the two files
     """
-    pairs = []
+    duplicate_found = False
+    duplicate_count = 0
+    ending = ""
     # create a dictionary using file1 and file2
     with open(file1) as file:
         lines = [line.strip() for line in file]
@@ -68,45 +50,41 @@ def compare(file1, file2):
     # find the intersection of the dictionaries (matching keys) and make a Pair object with the intersections
     for key in a.keys():
         if key in b.keys():
-            pair = Pair(file1, file2, key, a.get(key), b.get(key))
-            pairs.append(pair)
-    return pairs
+            duplicate_found = True
+            duplicate_count += 1
+            ending += "*** " + str(a[key]) + " "+  str(b[key]) + " " + key + "\n"
 
-def printPairs(pairs):
-    ''' Function takes in a list of pairs between two files, and prints the pair in desired output
-
-    Parameters:
-    pairs - a list of pairs
-    '''
-    print("-------------------------------------")
-    print("File 1: ", pairs[0].file1)
-    print("File 2: ", pairs[0].file2)
-    print("Number of identical lines: ", len(pairs))
-    print("-------------------------------------")
-    for pair in pairs:
-        print("*** ", pair.file1_num, pair.file2_num, pair.line)
+    # print file and matches only if a duplicate has been found
+    if (duplicate_found):
+        print("-------------------------------------")
+        print("File 1: ", file1)
+        print("File 2: ", file2)
+        print("Number of identical lines: ", duplicate_count)
+        print("-------------------------------------")
+        print(ending)
 
 def main():
     ''' Function that asks user for a directory, then prints all python file names and the number of lines in each file'''
 
     # ask user for path
-    # path = raw_input("Please indicate path to directory below: \n")
+    #path = raw_input("Please indicate path to directory below: \n")
     # test path: path '/Users/tiffanyxiao/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
     path = "/Users/tiffanyxiao/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
 
-    # identify all python files in directory
-    text_files = [f for f in os.listdir(path)]
+    # create a try catch block in case of invalid directory inputted
+    try:
+        # identify all python files in directory
+        text_files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
 
-    # get all combinations of text_files
-    comb = combinations(text_files, 2) # currently only makes combinations with .py files
+        # get all combinations of text_files
+        comb = combinations(text_files, 2) # currently only makes combinations with .py files
 
-    all_pairs = []
+        # compare each combination of text files
+        for i in list(comb):
+            compare(i[0], i[1])
 
-    for i in list(comb):
-        all_pairs.append(compare(i[0], i[1]))
-
-    for pairs in all_pairs:
-        if pairs:
-            printPairs(pairs)
+    except OSError:
+        print("Invalid path to directory inputted. Please try again.")
+        main()
 
 main()
