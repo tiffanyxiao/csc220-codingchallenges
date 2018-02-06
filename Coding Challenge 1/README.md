@@ -12,4 +12,4 @@ Objective of Program: Write a program that reads all the files in a specified di
 Tiffany Xiao, Karen Santamaria, Quynh Mai
 
 ### Note:
-The project can be found on [Github](https://github.com/tiffanyxiao/csc220-codingchallenges/tree/master/Coding%20Challenge%201). On the Github page, there are test cases and an additional redundancyChecker.py that utilizes classes.  
+The project can be found on [Github](https://github.com/tiffanyxiao/csc220-codingchallenges/tree/master/Coding%20Challenge%201). On the Github page, there are test cases and an additional redundancyChecker.py that utilizes classes (our initial code without addressing certain edge cases).  
