@@ -1,5 +1,6 @@
 '''
 Author: Tiffany Xiao
+Collaborators: Karen Santamaria and Quynh Mai
 Date: February 1, 2018
 Title: Redundancy Detector
 
@@ -18,6 +19,12 @@ Number of identical lines: <n>
 *** <line_num_f1> < line_num_f2> <line_contents>
 
 Description:
+
+To fix:
+-Line numbers (currently counting line numbers after strip)
+-reducing garbage & improving efficiency
+-removing the class to improve efficiency (print pair directly)
+-create try & catch block for user input
 '''
 import glob, os
 from itertools import combinations
@@ -69,7 +76,7 @@ def printPairs(pairs):
     ''' Function takes in a list of pairs between two files, and prints the pair in desired output
 
     Parameters:
-    pairs - a list of pairs 
+    pairs - a list of pairs
     '''
     print("-------------------------------------")
     print("File 1: ", pairs[0].file1)
@@ -83,7 +90,7 @@ def main():
     ''' Function that asks user for a directory, then prints all python file names and the number of lines in each file'''
 
     # ask user for path
-    #path = raw_input("Please indicate path to directory below: \n")
+    # path = raw_input("Please indicate path to directory below: \n")
     # test path: path '/Users/tiffanyxiao/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
     path = "/Users/tiffanyxiao/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
 
