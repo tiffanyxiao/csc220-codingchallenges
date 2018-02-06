@@ -9,8 +9,10 @@ write a @printdebugger decorator that logs the enter/exit of a function
 #nextlevel2: indent to show functions that were called from within other functions
 
 Description:
-This program completes the main objective and the next two levels. It is a simple
-program that tests two functions.
+This program completes the main objective and the next two levels. It is a simple program that tests two functions.
+
+Further works:
+Perhaps implementing a calculator program would be a better way to test the program. 
 '''
 
 def printdebugger(func):
@@ -30,9 +32,7 @@ def printdebugger(func):
 
         print("    "*(printdebugger.calls-1) + "Function output (if any):"),                    # print function output
         func(*args)                                                                             # call function
-
         print("    "*(printdebugger.calls-1)+"-End of "+func.__name__)                          # print end statement
-
         # finished with this function, dedent
         printdebugger.calls -= 1
         return
