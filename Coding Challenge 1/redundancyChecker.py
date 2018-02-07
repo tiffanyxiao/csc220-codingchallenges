@@ -24,7 +24,6 @@ To fix:
 -reducing garbage & improving efficiency
 -test against .py, .txt and .csv
 -remove test path
--need to address not being in the path when opening files
 '''
 import glob, os
 from itertools import combinations
@@ -37,8 +36,6 @@ def compare(path, file1, file2):
     file1 - the first file to check
     file2 - the second file to check
     """
-    # binary value to indicate if a duplicate has been found in the files
-    duplicate_found = False
 
     # count number of duplicate lines
     duplicate_count = 0
@@ -49,21 +46,20 @@ def compare(path, file1, file2):
     # create a dictionary using file1 and file2
     with open(path+"/"+file1) as file:
         lines = [line for line in file]
-    a = dict((lines[i], i+1) for i in range(len(lines)))
+    a = dict((lines[i].strip(), i+1) for i in range(len(lines)))
     with open(path+"/"+file2) as file:
         lines2 = [line for line in file]
-    b = dict((lines2[i], i+1) for i in range(len(lines2)))
+    b = dict((lines2[i].strip(), i+1) for i in range(len(lines2)))
 
     # find the intersection of the dictionaries (matching keys)
     for key in a.keys():
         # if there is an intersection, indicate that a duplicate has been found, increment duplicate_count and add the line to ending
         if key in b.keys() and key != "\n":
-            duplicate_found = True
             duplicate_count += 1
-            string_end += "*** " + str(a[key]) + " "+  str(b[key]) + " " + key
+            string_end += "*** " + str(a[key]) + " "+  str(b[key]) + " " + key + "\n"
 
     # print file and matches only if a duplicate has been found
-    if (duplicate_found):
+    if (duplicate_count != 0):
         print("-------------------------------------")
         print("File 1: ", file1)
         print("File 2: ", file2)

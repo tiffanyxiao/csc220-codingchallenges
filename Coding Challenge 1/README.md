@@ -7,6 +7,14 @@ Objective of Program: Write a program that reads all the files in a specified di
 
 ## Edge Cases Addressed:
 * User inputs invalid directory
+* redundancyChecker.py is not in the path to check
+* Lines are stripped of whitespace, so that two lines containing the same characters (minus the indentation at the beginning) are treated as the same line.
+
+## TODO:
+* test having 3 defs in one file and 1 def in 1 file (and vice versa)
+* lines that begin with equivalent white space is not the same line?
+* testing docstrings
+* test other types of files
 
 ## Project Collaborators:
 Tiffany Xiao, Karen Santamaria, Quynh Mai
