@@ -38,10 +38,10 @@ def compare(path, file1, file2):
     """
 
     # count number of duplicate lines
-    duplicate_count = 0
+    duplicateCount = 0
 
     # string with all duplicate lines (and their line numbers)
-    string_end = ""
+    stringEnd = ""
 
     # create a dictionary using file1 and file2
     with open(path+"/"+file1) as file:
@@ -53,19 +53,19 @@ def compare(path, file1, file2):
 
     # find the intersection of the dictionaries (matching keys)
     for key in a.keys():
-        # if there is an intersection, indicate that a duplicate has been found, increment duplicate_count and add the line to ending
+        # if there is an intersection, indicate that a duplicate has been found, increment duplicateCount and add the line to ending
         if key in b.keys() and key != "\n":
-            duplicate_count += 1
-            string_end += "*** " + str(a[key]) + " "+  str(b[key]) + " " + key + "\n"
+            duplicateCount += 1
+            stringEnd += "*** " + str(a[key]) + " "+  str(b[key]) + " " + key + "\n"
 
     # print file and matches only if a duplicate has been found
-    if (duplicate_count != 0):
+    if (duplicateCount != 0):
         print("-------------------------------------")
         print("File 1: ", file1)
         print("File 2: ", file2)
-        print("Number of identical lines: ", duplicate_count)
+        print("Number of identical lines: ", duplicateCount)
         print("-------------------------------------")
-        print(string_end)
+        print(stringEnd)
 
 def main():
     ''' Function that asks user for a directory, then prints all python file names and the number of lines in each file'''
@@ -78,10 +78,10 @@ def main():
     # create a try catch block in case of invalid directory inputted
     try:
         # identify all python files in directory
-        text_files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+        textFiles = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
 
-        # get all combinations of text_files
-        comb = combinations(text_files, 2) # currently only makes combinations with .py files
+        # get all combinations of textFiles
+        comb = combinations(textFiles, 2) # currently only makes combinations with .py files
 
         # compare each combination of text files
         for i in list(comb):
