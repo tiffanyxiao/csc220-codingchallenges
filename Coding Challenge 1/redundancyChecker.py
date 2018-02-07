@@ -46,10 +46,11 @@ def compare(path, file1, file2):
     # create a dictionary using file1 and file2
     with open(path+"/"+file1) as file:
         lines = [line for line in file]
-    a = dict((lines[i].strip(), i+1) for i in range(len(lines)))
+    a = dict((lines[i].strip(), i+1) for i in range(len(lines)) if lines[i].strip())
+    print(a)
     with open(path+"/"+file2) as file:
         lines2 = [line for line in file]
-    b = dict((lines2[i].strip(), i+1) for i in range(len(lines2)))
+    b = dict((lines2[i].strip(), i+1) for i in range(len(lines2)) if lines2[i].strip())
 
     # find the intersection of the dictionaries (matching keys)
     for key in a.keys():
