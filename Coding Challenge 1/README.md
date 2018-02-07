@@ -2,13 +2,17 @@
 Objective of Program: Write a program that reads all the files in a specified directory and prints a report of the lines that are identical in any pair of files.
 
 ## How to Run:
-1. Run python program "redundancyChecker.py" with command "python" in terminal (note: we are using python2)
+1. Run python program "redundancyChecker.py" with command "python" in terminal (note: we are using python 2.7.10)
 2. Input path to the directory you would like to check.
+
+## Python Version
+Python 2.7.10
 
 ## Edge Cases Addressed:
 * User inputs invalid directory
 * redundancyChecker.py is not in the path to check
 * Lines are stripped of whitespace, so that two lines containing the same characters (minus the indentation at the beginning) are treated as the same line.
+* Lines containing spaces (whitespace) do not count as lines to be matched
 
 ## TODO:
 * test having 3 defs in one file and 1 def in 1 file (and vice versa)

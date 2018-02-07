@@ -5,9 +5,8 @@ Date: February 1, 2018
 Title: Redundancy Detector
 
 Objective of challenge:
-write a program that reads all the files in a specified
-directory and prints a report of the lines
-that are identical in any pair of files
+write a program that reads all the files in a specified directory and prints a report of the lines that are identical
+in any pair of files
 
 Output expected:
 -------------------------------------
@@ -19,11 +18,17 @@ Number of identical lines: <n>
 *** <line_num_f1> < line_num_f2> <line_contents>
 
 Description:
+The program consists of two functions - compare and main. main() will ask the user for the path to the specified directory.
+Then, it will utilize tools from the combinations library to create unique combinations of files to check (to reduce time).
+Next, it will loop through each combination and call compare() on each combination. compare() will check for identical lines
+in the file. It will strip all files of whitespace and blanks lines, and put all lines with characters in them into a
+dictionary with their line number. To check for identical lines, compare() will check the keys of each dictionary and check
+for matches. Finally, it will print the results (if a match is found) as desired.
 
 To fix:
--reducing garbage & improving efficiency
 -test against .py, .txt and .csv
 -remove test path
+-fix problem w/ duplicate lines not being detected
 '''
 import glob, os
 from itertools import combinations
@@ -36,7 +41,6 @@ def compare(path, file1, file2):
     file1 - the first file to check
     file2 - the second file to check
     """
-
     # count number of duplicate lines
     duplicateCount = 0
 
@@ -47,7 +51,6 @@ def compare(path, file1, file2):
     with open(path+"/"+file1) as file:
         lines = [line for line in file]
     a = dict((lines[i].strip(), i+1) for i in range(len(lines)) if lines[i].strip())
-    print(a)
     with open(path+"/"+file2) as file:
         lines2 = [line for line in file]
     b = dict((lines2[i].strip(), i+1) for i in range(len(lines2)) if lines2[i].strip())
@@ -69,7 +72,8 @@ def compare(path, file1, file2):
         print(stringEnd)
 
 def main():
-    ''' Function that asks user for a directory, then prints all python file names and the number of lines in each file'''
+    ''' Function that asks user for a directory, then identifies all files in the directory, creates all possible
+    unique file combinations, and then calls compare function on all the combinations.'''
 
     # ask user for path
     #path = raw_input("Please indicate path to directory below: \n")
@@ -86,7 +90,7 @@ def main():
 
         # compare each combination of text files
         for i in list(comb):
-            compare(path,i[0], i[1])
+            compare(path, i[0], i[1])
 
     except OSError:
         print("Invalid path to directory inputted. Please try again.")
