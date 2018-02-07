@@ -30,6 +30,7 @@ def printdebugger(func):
             print("    "*(printdebugger.calls-1)+"Parameters passed into "+func.__name__+": "),
             for arg in args:
                 print(arg),
+            # print each key & value in kwargs
             for key, value in kwargs.items():
                 print ("(key: "+str(key)+", value: "+str(value)+")"),
             print("")

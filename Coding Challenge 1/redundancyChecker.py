@@ -29,10 +29,11 @@ To fix:
 import glob, os
 from itertools import combinations
 
-def compare(file1, file2):
+def compare(path, file1, file2):
     """ Function to compare two files and identify a matching line, then print the matching lines in desired format.
 
     Parameters:
+    path - path to the files
     file1 - the first file to check
     file2 - the second file to check
     """
@@ -43,23 +44,23 @@ def compare(file1, file2):
     duplicate_count = 0
 
     # string with all duplicate lines (and their line numbers)
-    stringEnd = ""
+    string_end = ""
 
     # create a dictionary using file1 and file2
-    with open(file1) as file:
-        lines = [line.strip() for line in file]
+    with open(path+"/"+file1) as file:
+        lines = [line for line in file]
     a = dict((lines[i], i+1) for i in range(len(lines)))
-    with open(file2) as file:
-        lines2 = [line.strip() for line in file]
+    with open(path+"/"+file2) as file:
+        lines2 = [line for line in file]
     b = dict((lines2[i], i+1) for i in range(len(lines2)))
 
     # find the intersection of the dictionaries (matching keys)
     for key in a.keys():
         # if there is an intersection, indicate that a duplicate has been found, increment duplicate_count and add the line to ending
-        if key in b.keys():
+        if key in b.keys() and key != "\n":
             duplicate_found = True
             duplicate_count += 1
-            stringEnd += "*** " + str(a[key]) + " "+  str(b[key]) + " " + key + "\n"
+            string_end += "*** " + str(a[key]) + " "+  str(b[key]) + " " + key
 
     # print file and matches only if a duplicate has been found
     if (duplicate_found):
@@ -68,7 +69,7 @@ def compare(file1, file2):
         print("File 2: ", file2)
         print("Number of identical lines: ", duplicate_count)
         print("-------------------------------------")
-        print(stringEnd)
+        print(string_end)
 
 def main():
     ''' Function that asks user for a directory, then prints all python file names and the number of lines in each file'''
@@ -88,7 +89,7 @@ def main():
 
         # compare each combination of text files
         for i in list(comb):
-            compare(i[0], i[1])
+            compare(path,i[0], i[1])
 
     except OSError:
         print("Invalid path to directory inputted. Please try again.")
