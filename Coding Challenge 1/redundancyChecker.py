@@ -52,13 +52,14 @@ def compare(path, file1, file2):
         lines2 = [line for line in file]
     b = [[lines2[i].strip(), i+1] for i in range(len(lines2)) if lines2[i].strip()]
 
-    # find matches
+    # loop through each list and find matches
     for word_line in a:
         for word_line2 in b:
             if word_line[0] == word_line2[0]:
                 duplicateCount += 1
                 stringEnd += "*** " + str(word_line[1]) + " "+  str(word_line2[1]) + " " + word_line[0] + "\n"
 
+    # print specified format
     if (duplicateCount != 0):
         print("-------------------------------------")
         print("File 1: ", file1)

@@ -8,6 +8,12 @@ Objective of Program: Write a program that reads all the files in a specified di
 ## Python Version
 Python 2.7.10
 
+## Efficiency
+The program is efficient in a few ways:
+1. To avoid redundancy when checking files, we generated unique combinations of files (i.e. the program treats (file1.py, file2.py) and (file2.py, file1.py) as one unique combination, and will only check this pairing of files for matches once).
+2. We utilized list comprehensions multiple times throughout our program for more efficiency (i.e. when opening files and creating a list of lines and when creating 2d lists of stripped lines and line numbers).
+3. To avoid iterating through blank lines, we stripped files of their blank lines.
+
 ## Edge Cases Addressed:
 * User inputs invalid directory
 * redundancyChecker.py is not in the path to check
