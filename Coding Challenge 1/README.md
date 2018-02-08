@@ -13,10 +13,7 @@ Python 2.7.10
 * redundancyChecker.py is not in the path to check
 * Lines are stripped of whitespace, so that two lines containing the same characters (minus the indentation at the beginning) are treated as the same line.
 * Lines containing spaces (whitespace) do not count as lines to be matched
-
-## TODO:
-* testing docstrings
-* test other types of files
+* Files that have repeated lines (i.e. file1 has 3 instances of "main" and file2 has 4 instances of "main") will output all matches.
 
 ## Project Collaborators:
 Tiffany Xiao, Karen Santamaria, Quynh Mai

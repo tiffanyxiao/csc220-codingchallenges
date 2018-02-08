@@ -22,13 +22,9 @@ The program consists of two functions - compare and main. main() will ask the us
 Then, it will utilize tools from the combinations library to create unique combinations of files to check (to reduce time).
 Next, it will loop through each combination and call compare() on each combination. compare() will check for identical lines
 in the file. It will strip all files of whitespace and blanks lines, and put all lines with characters in them into a
-dictionary with their line number. To check for identical lines, compare() will check the keys of each dictionary and check
-for matches. Finally, it will print the results (if a match is found) as desired.
+list with their line number. To check for identical lines, compare() will check each list for matching lines. Finally, it will
+print the results (if a match is found) as desired.
 
-To fix:
--test against .py, .txt and .csv
--remove test path
--fix problem w/ duplicate lines not being detected
 '''
 import glob, os
 from itertools import combinations
@@ -47,6 +43,7 @@ def compare(path, file1, file2):
     # string with all duplicate lines (and their line numbers)
     stringEnd = ""
 
+    # create 2D lists of file1 and file2 which stores [string, line_num]
     with open(path+"/"+file1) as file:
         lines = [line for line in file]
     a = [[lines[i].strip(), i+1] for i in range(len(lines)) if lines[i].strip()]
@@ -55,6 +52,7 @@ def compare(path, file1, file2):
         lines2 = [line for line in file]
     b = [[lines2[i].strip(), i+1] for i in range(len(lines2)) if lines2[i].strip()]
 
+    # find matches
     for word_line in a:
         for word_line2 in b:
             if word_line[0] == word_line2[0]:
@@ -74,9 +72,7 @@ def main():
     unique file combinations, and then calls compare function on all the combinations.'''
 
     # ask user for path
-    #path = raw_input("Please indicate path to directory below: \n")
-    # test path: path '/Users/tiffanyxiao/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1"
-    path = "/Users/tiffanyxiao/Documents/GitHub/csc220-codingchallenges/Coding Challenge 1/Tests"
+    path = raw_input("Please indicate path to directory below: \n")
 
     # create a try catch block in case of invalid directory inputted
     try:
