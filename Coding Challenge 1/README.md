@@ -15,8 +15,6 @@ Python 2.7.10
 * Lines containing spaces (whitespace) do not count as lines to be matched
 
 ## TODO:
-* test having 3 defs in one file and 1 def in 1 file (and vice versa)
-* lines that begin with equivalent white space is not the same line?
 * testing docstrings
 * test other types of files
 
