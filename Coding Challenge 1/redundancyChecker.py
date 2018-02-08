@@ -58,30 +58,14 @@ def compare(path, file1, file2):
     # open first file and put it into a list with line numbers
     with open(path+"/"+file1) as file:
         lines = [line for line in file]
+    a = [[lines[i].strip(), i+1] for i in range(len(lines)) if lines[i].strip()]
 
     # match lines (print lazily, as we find them)
     with open(path+"/"+file2, "r") as fp:
-        for line1 in lines:
-            for line2 in generate_equal_lines(line1.strip(), fp):
+        for line1 in a:
+            for line2 in generate_equal_lines(line1[0].strip(), fp):
                 duplicateCount += 1
-                print line2
-                #stringEnd += "*** " + str(a[key]) + " "+  str(b[key]) + " " + key + "\n"
-
-
-    # # create a dictionary using file1 and file2
-    # with open(path+"/"+file1) as file:
-    #     lines = [line for line in file]
-    # a = dict((lines[i].strip(), i+1) for i in range(len(lines)) if lines[i].strip())
-    # with open(path+"/"+file2) as file:
-    #     lines2 = [line for line in file]
-    # b = dict((lines2[i].strip(), i+1) for i in range(len(lines2)) if lines2[i].strip())
-
-    # # find the intersection of the dictionaries (matching keys)
-    # for key in a.keys():
-    #     # if there is an intersection, indicate that a duplicate has been found, increment duplicateCount and add the line to ending
-    #     if key in b.keys() and key != "\n":
-    #         duplicateCount += 1
-    #         stringEnd += "*** " + str(a[key]) + " "+  str(b[key]) + " " + key + "\n"
+                stringEnd += "*** " + str(line1[1]) + " "+  str(line2[1]) + " " + line1[0].strip() + "\n"
 
     # print file and matches only if a duplicate has been found
     if (duplicateCount != 0):
@@ -90,7 +74,7 @@ def compare(path, file1, file2):
         print("File 2: ", file2)
         print("Number of identical lines: ", duplicateCount)
         print("-------------------------------------")
-        #print(stringEnd)
+        print(stringEnd)
 
 def main():
     ''' Function that asks user for a directory, then identifies all files in the directory, creates all possible
