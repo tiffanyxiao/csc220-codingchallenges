@@ -33,14 +33,6 @@ To fix:
 import glob, os
 from itertools import combinations
 
-def generate_equal_lines(string, fp):
-    lineNumber = 0
-    for line in fp:
-        lineNumber += 1
-        if  line.strip() == string:
-            #yield str(lineNumber)+ "|" + line.strip()
-            yield [line.strip(), lineNumber]
-
 def compare(path, file1, file2):
     """ Function to compare two files and identify a matching line, then print the matching lines in desired format.
 
@@ -55,19 +47,20 @@ def compare(path, file1, file2):
     # string with all duplicate lines (and their line numbers)
     stringEnd = ""
 
-    # open first file and put it into a list with line numbers
     with open(path+"/"+file1) as file:
         lines = [line for line in file]
     a = [[lines[i].strip(), i+1] for i in range(len(lines)) if lines[i].strip()]
 
-    # match lines (print lazily, as we find them)
-    with open(path+"/"+file2, "r") as fp:
-        for line1 in a:
-            for line2 in generate_equal_lines(line1[0].strip(), fp):
-                duplicateCount += 1
-                stringEnd += "*** " + str(line1[1]) + " "+  str(line2[1]) + " " + line1[0].strip() + "\n"
+    with open(path+"/"+file2) as file:
+        lines2 = [line for line in file]
+    b = [[lines2[i].strip(), i+1] for i in range(len(lines2)) if lines2[i].strip()]
 
-    # print file and matches only if a duplicate has been found
+    for word_line in a:
+        for word_line2 in b:
+            if word_line[0] == word_line2[0]:
+                duplicateCount += 1
+                stringEnd += "*** " + str(word_line[1]) + " "+  str(word_line2[1]) + " " + word_line[0] + "\n"
+
     if (duplicateCount != 0):
         print("-------------------------------------")
         print("File 1: ", file1)
