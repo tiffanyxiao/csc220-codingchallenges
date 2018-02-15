@@ -1,12 +1,12 @@
-# Redundancy Checker
-Objective of Program: Write a program that reads all the files in a specified directory and prints a report of the lines that are identical in any pair of files.
+# Gene Splicing
+Objective of Program: Given two strings representing snippets of genes (letters ACGT), identify the shortest string that could contain them both as subsequences.
 
 ## How to Run:
-1. Run python program "redundancyChecker.py" with command "python" in terminal (note: we are using python 2.7.10)
-2. Input path to the directory you would like to check.
+1. Run python program "geneSplicing.py" with command "python" in terminal (note: we are using python 3.6.3)
+2. Input genes as directed by program.
 
 ## Python Version
-Python 2.7.10
+Python 3.6.3
 
 ## Efficiency
 The program is efficient in a few ways:
@@ -22,7 +22,7 @@ The program is efficient in a few ways:
 * Files that have repeated lines (i.e. file1 has 3 instances of "main" and file2 has 4 instances of "main") will output all matches.
 
 ## Project Collaborators:
-Tiffany Xiao, Karen Santamaria, Quynh Mai
+Tiffany Xiao, Karen Santamaria, Heidi Tsang
 
 ### Note:
 The project can be found on [Github](https://github.com/tiffanyxiao/csc220-codingchallenges/tree/master/Coding%20Challenge%201). On the Github page, there are test cases and an additional redundancyChecker.py that utilizes classes (our initial code without addressing certain edge cases).  

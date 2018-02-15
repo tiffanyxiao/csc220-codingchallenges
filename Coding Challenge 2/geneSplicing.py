@@ -7,7 +7,6 @@ Title: Gene Splicing
 Objective: given two strings representing snippets of genes (letters ACGT), identify
 the shortest string that could contain them both as subsequences.
 
-
 Examples:
 ********************************************
 string 1 – AACCTGT     string 2 – CTGTACG
@@ -76,17 +75,15 @@ def get_overlap(string1, string2, len_string1, len_string2):
 
     # last element of 2d array (arrayValues[len_string1][len_string2] should have the length of the smallest substring)
     # find the overlap position by using this number (find first instance of this number)
-    overlap_position = None
+    overlap_position = []
     for k in range(len_string1+1):
         for l in range(len_string2+1):
             if arrayValues[k][l] == arrayValues[i][j]:
-                overlap_position = [k, l]
-                break
-        else:
-            continue
-        break
+                overlap_position.append([k, l])
 
-    # # identify which string contains the substring
+    # check that the first largest count is
+
+    # identify which string contains the substring
     # if len_string1 == overlap_position[0] and len_string2 == overlap_position[1]:
     #     # perform substring on longer string
     # elif len_string1 == overlap_position[0]:
@@ -101,7 +98,7 @@ def get_overlap(string1, string2, len_string1, len_string2):
     print(overlap_position)
 
     # #for every cell in the matrix, add the value of the upper-reight cell to the current cell
-    # #so the value of the cells will be the number of cosecutive match if there is any
+    # #so the value of the cells will be the number of consecutive match if there is any
     # overlap_len = 0
     # overlap_position = []
     # for col in range (0,len_string1):
@@ -137,7 +134,7 @@ def main():
     # ask user for string1, and check that it is a proper string (else, repeatedly ask for a proper string)
     while True:
         try:
-            string1 = input("Input the first sequence" + "\n")
+            string1 = input("Input the first sequence" + "\n").upper()
             for i in string1:
                 if (i not in gene_list):
                     raise ValueError('String1 is not a gene')
@@ -149,7 +146,7 @@ def main():
     # ask user for string2, and check that it is a proper string (else, repeatedly ask for a proper string)
     while True:
         try:
-            string2 = input("Input the second sequence" + "\n")
+            string2 = input("Input the second sequence" + "\n").upper()
             for i in string2:
                 if (i not in gene_list):
                     raise ValueError('String2 is not a gene')
