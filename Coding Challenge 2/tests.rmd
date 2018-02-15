@@ -10,6 +10,7 @@
 9. multiple substrings: string1 = AACTGGC string2 = GGCAACT
 - string1 = ATTG string2 = TTA
 - string1 = AATCG string2 = GTTCG
+- string1 = ACTG string2 = TGAC
 
 # Cases
 1. Complete overlap for either string
