@@ -45,64 +45,59 @@ def get_overlap(string1, string2, len_string1, len_string2):
     #string1 is associated with horizontal diraction
     #string2 is associated with vertical direction
     #everything initially filled in with 0's
-    matrix = [[0 for col in range(len_string1)] for row in range(len_string2)]
+    arrayValues = [[0 for col in range(len_string1)] for row in range(len_string2)]
 
     #fill in 1's with matches
     for col in range (0,len_string1):
         for row in range (0,len_string2):
             if (string1[col] == string2[row]):
-                matrix[row][col] = 1
+                arrayValues[row][col] = 1
 
-    #for every cell in the matrix, add the value of the upper-reight cell to the current cell
+    #for every cell in the arrayValues, add the value of the upper-reight cell to the current cell
     #so the value of the cells will be the number of cosecutive match if there is any
-    overlap_len = 0
-    overlap_position = []
     for col in range (0,len_string1):
         for row in range (0,len_string2):
-            if matrix[row][col] == 1 and row!=0 and col!=0:
-                matrix[row][col] = matrix[row][col] + matrix[row-1][col-1]
-                #if matrix[row][col]>overlap_len:
-                    # overlap_len = matrix[row][col]
-                    # overlap_position = [row,col]
+            if arrayValues[row][col] == 1 and row!=0 and col!=0:
+                arrayValues[row][col] = arrayValues[row][col] + arrayValues[row-1][col-1]
 
     large_share = 0
     large_share_pos = []
 
-    for i in range(len(matrix)):
-        if (large_share < matrix[i][len_string1-1]):
+    for i in range(len(arrayValues)):
+        if (large_share < arrayValues[i][len_string1-1]):
             current_pos = [i, len_string1-1]
             keep_going = True
 
             while (current_pos[0] != 0 and keep_going):
                 current_pos = [current_pos[0]-1, current_pos[1]-1]
-                if (matrix[current_pos[0]][ current_pos[1]] == 0):
+                if (arrayValues[current_pos[0]][ current_pos[1]] == 0):
                     keep_going = False
 
             if (keep_going):
-                if (large_share == matrix[i][len_string1-1]):
+                if (large_share == arrayValues[i][len_string1-1]):
                     large_share_pos.append([i,len_string1-1])
                 else:
-                    large_share = matrix[i][len_string1-1]
+                    large_share = arrayValues[i][len_string1-1]
                     large_share_pos = [[i,len_string1-1]]
 
-    for i in range(len(matrix[len_string2-1])):
-        if(large_share <= matrix[len_string2-1][i]):
+    for i in range(len(arrayValues[len_string2-1])):
+        if(large_share <= arrayValues[len_string2-1][i]):
             current_pos = [len_string2-1,i]
             keep_going = True
             while(current_pos[1] != 0 and keep_going):
                 current_pos = [current_pos[0]-1, current_pos[1]-1]
-                if (matrix[current_pos[0]][ current_pos[1]] == 0):
+                if (arrayValues[current_pos[0]][ current_pos[1]] == 0):
                     keep_going = False
 
 
             if (keep_going):
-                if (large_share == matrix[len_string2-1][i]):
+                if (large_share == arrayValues[len_string2-1][i]):
                     large_share_pos.append([len_string2-1, i])
                 else:
-                    large_share = matrix[len_string2-1][i]
+                    large_share = arrayValues[len_string2-1][i]
                     large_share_pos = [[len_string2-1, i]]
 
-    for item in matrix:
+    for item in arrayValues:
         print(item)
 
     print("largest shared positon", large_share_pos)
@@ -114,6 +109,11 @@ def get_overlap(string1, string2, len_string1, len_string2):
     if (large_share == 0):
         return [string1 + string2, string2 + string1]
     # if string is somewhere inbetween (either in front or in middle)
+    if (large_share == 1):
+        if (large_share_pos[0][1]+2 == len(string2)):
+            union.append(string1[:len_string1-large_share]+string2)
+        elif (large_share_pos[0][0]+2 == len(string1)):
+            union.append(string2[:len_string2-large_share]+string1)
     for share in large_share_pos:
         if (share[1]+1 == len(string2)):
             union.append(string1[:len_string1-large_share]+string2)
@@ -141,13 +141,13 @@ def main():
             raise ValueError('String2 is not a gene')
     #create substring by generating overlap with strings
     union_result = get_overlap(string1,string2, len(string1), len(string2))
+
     # print in desired format
-    print("**************************************")
-    print("String 1 -", string1)
-    print("String 2 -", string2)
+    print("********************************************")
+    print("string 1 -", string1, "     string 2 -", string2)
     print("shortest string that has both as substring")
     for union in union_result:
         print(union, "(length " + str(len(union)) + ")")
-    print("**************************************")
+    print("********************************************")
 
 main()

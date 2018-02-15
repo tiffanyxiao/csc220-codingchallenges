@@ -1,16 +1,19 @@
 # Test Cases
-1. repeated string: string1 = AAAA, string2 = A
-2. same string: string1 = ACTG, string2 = ACTG
-3. edge string on string1: string1 = ACTG string2 =TGCA
-4. edge string on string2: string1 = TGCA string2 = ACTG
-5. complete overlap on string1: string1 = AATTCGGG string2 = TT
-6. complete overlap on string2: string1 = TT string2 = AATTCGGG
-7. string1 is before string2: string1 = TTA string2: TTAGGC
-8. string2 is before string1: string1 = TTAGGC string2 = TTA
-9. multiple substrings: string1 = AACTGGC string2 = GGCAACT
+- repeated string: string1 = AAAA, string2 = A
+- same string: string1 = ACTG, string2 = ACTG
+- edge string on string1: string1 = ACTG string2 =TGCA
+- edge string on string2: string1 = TGCA string2 = ACTG
+- complete overlap on string1: string1 = AATTCGGG string2 = TT
+- complete overlap on string2: string1 = TT string2 = AATTCGGG
+- string1 is before string2: string1 = TTA string2: TTAGGC
+- string2 is before string1: string1 = TTAGGC string2 = TTA
+- multiple substrings: string1 = AACTGGC string2 = GGCAACT
 - string1 = ATTG string2 = TTA
+- string1 = ATTG string2 = TTAT
 - string1 = AATCG string2 = GTTCG
 - string1 = ACTG string2 = TGAC
+- no overlap: string1 = ATT string2 = CCT
+
 
 # Cases
 1. Complete overlap for either string
