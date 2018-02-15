@@ -61,9 +61,9 @@ def get_overlap(string1, string2, len_string1, len_string2):
         for row in range (0,len_string2):
             if matrix[row][col] == 1 and row!=0 and col!=0:
                 matrix[row][col] = matrix[row][col] + matrix[row-1][col-1]
-                if matrix[row][col]>overlap_len:
-                    overlap_len = matrix[row][col]
-                    overlap_position = [row,col]
+                #if matrix[row][col]>overlap_len:
+                    # overlap_len = matrix[row][col]
+                    # overlap_position = [row,col]
 
     large_share = 0
     large_share_pos = []
@@ -79,36 +79,48 @@ def get_overlap(string1, string2, len_string1, len_string2):
                     keep_going = False
 
             if (keep_going):
-                large_share = matrix[i][len_string1-1]
-                large_share_pos = [i,len_string1-1]
+                if (large_share == matrix[i][len_string1-1]):
+                    large_share_pos.append([i,len_string1-1])
+                else:
+                    large_share = matrix[i][len_string1-1]
+                    large_share_pos = [[i,len_string1-1]]
 
     for i in range(len(matrix[len_string2-1])):
-        if(large_share < matrix[len_string2-1][i]):
+        if(large_share <= matrix[len_string2-1][i]):
             current_pos = [len_string2-1,i]
             keep_going = True
             while(current_pos[1] != 0 and keep_going):
                 current_pos = [current_pos[0]-1, current_pos[1]-1]
                 if (matrix[current_pos[0]][ current_pos[1]] == 0):
                     keep_going = False
+
+
             if (keep_going):
-                large_share = matrix[len_string2-1][i]
-                large_share_pos = [len_string2-1, i]
+                if (large_share == matrix[len_string2-1][i]):
+                    large_share_pos.append([len_string2-1, i])
+                else:
+                    large_share = matrix[len_string2-1][i]
+                    large_share_pos = [[len_string2-1, i]]
 
     for item in matrix:
         print(item)
 
     print("largest shared positon", large_share_pos)
-    print("largest sharted size", large_share)
+    print("largest shared size", large_share)
 
+    union = []
     #construct the substring
     # if the largest shared size == 0
     if (large_share == 0):
         return [string1 + string2, string2 + string1]
     # if string is somewhere inbetween (either in front or in middle)
-    if (large_share_pos[1]+1 == len(string2)):
-        return[string1[:len_string1-1]+string2]
-    elif (large_share_pos[0]+1 == len(string1)):
-        return[string2[:len_string2-1]+string1]
+    for share in large_share_pos:
+        if (share[1]+1 == len(string2)):
+            union.append(string1[:len_string1-large_share]+string2)
+        elif (share[0]+1 == len(string1)):
+            union.append(string2[:len_string2-large_share]+string1)
+
+    return union
 
 def main():
     '''Function asks user to input two strings (two gene sequences), then calls other functions to get the overlap of the strings
