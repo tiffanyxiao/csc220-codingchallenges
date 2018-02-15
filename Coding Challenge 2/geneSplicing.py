@@ -41,7 +41,7 @@ def get_overlap(string1, string2, len_string1, len_string2):
         return [string2]
     elif (string2 in string1):
         return [string1]
-        
+
     #string1 is associated with horizontal diraction
     #string2 is associated with vertical direction
     #everything initially filled in with 0's
@@ -105,10 +105,10 @@ def get_overlap(string1, string2, len_string1, len_string2):
     if (large_share == 0):
         return [string1 + string2, string2 + string1]
     # if string is somewhere inbetween (either in front or in middle)
-    elif (large_share_pos[1]+1 == len(string2)):
-        return[string1+string2]
+    if (large_share_pos[1]+1 == len(string2)):
+        return[string1[:len_string1-1]+string2]
     elif (large_share_pos[0]+1 == len(string1)):
-        return[string2+string1]
+        return[string2[:len_string2-1]+string1]
 
 def main():
     '''Function asks user to input two strings (two gene sequences), then calls other functions to get the overlap of the strings
@@ -117,21 +117,17 @@ def main():
     # list of all valid letters in gene sequence
     gene_list = ["A","C","T","G"]
 
-    # intialize string1 and string2 (delete later)
-    string1 = "AAA"
-    string2 = "BAAAB"
+    # check string inputs
+    string1 = input("Input the first sequence" + "\n").upper()
+    for l in string1:
+        if (l not in gene_list):
+            raise ValueError('String1 is not a gene')
 
-    # # check string inputs
-    # string1 = input("Input the first sequence" + "\n").upper()
-    # for l in string1:
-    #     if (l not in gene_list):
-    #         raise ValueError('String1 is not a gene')
-    #
-    # string2 = input("Input the second sequence" + "\n").upper()
-    # for l in string2:
-    #     if (l not in gene_list):
-    #         raise ValueError('String2 is not a gene')
-    # create substring by generating overlap with strings
+    string2 = input("Input the second sequence" + "\n").upper()
+    for l in string2:
+        if (l not in gene_list):
+            raise ValueError('String2 is not a gene')
+    #create substring by generating overlap with strings
     union_result = get_overlap(string1,string2, len(string1), len(string2))
     # print in desired format
     print("**************************************")
