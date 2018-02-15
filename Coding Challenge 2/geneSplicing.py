@@ -16,20 +16,10 @@ AACCTGTACG (length 10)
 
 Description:
 
+To do:
+-return all possible substrings of equal length
+-remove test strings
 '''
-
-def print_union(string1, string2, union_result):
-    '''Function to print out the output in desired format.
-
-    Parameters:
-    string1 -
-    '''
-    print("**************************************")
-    print("String 1 -", string1)
-    print("String 2 -", string2)
-    print("shortest string that has both as substring")
-    print(union_result, "(" + str(len(union_result)) + ")")
-    print("**************************************")
 
 def string_union(string1, string2,substring):
     '''make the shortest string  that contains string1 and string2 as subsequences'''
@@ -127,36 +117,31 @@ def main():
     # list of all valid letters in gene sequence
     gene_list = ["A","C","T","G"]
 
-    # intialize string1 and string2
-    string1 = False
-    string2 = False
+    # intialize string1 and string2 (delete later)
+    string1 = "AATCG"
+    string2 = "GTTCG"
 
-    # ask user for string1, and check that it is a proper string (else, repeatedly ask for a proper string)
-    while True:
-        try:
-            string1 = input("Input the first sequence" + "\n").upper()
-            for i in string1:
-                if (i not in gene_list):
-                    raise ValueError('String1 is not a gene')
-        except ValueError:
-            print("String1 is not a proper gene sequence (must only contain the letters A, C, T and/or G). Please try again:")
-            continue
-        if string1:
-            break
-    # ask user for string2, and check that it is a proper string (else, repeatedly ask for a proper string)
-    while True:
-        try:
-            string2 = input("Input the second sequence" + "\n").upper()
-            for i in string2:
-                if (i not in gene_list):
-                    raise ValueError('String2 is not a gene')
-        except ValueError:
-            print("String2 is not a proper gene sequence (must only contain the letters A, C, T and/or G). Please try again:")
-            continue
-        if string2:
-            break
+    # # check string inputs
+    # string1 = input("Input the first sequence" + "\n").upper()
+    # for l in string1:
+    #     if (l not in gene_list):
+    #         raise ValueError('String1 is not a gene')
+    #
+    # string2 = input("Input the second sequence" + "\n").upper()
+    # for l in string2:
+    #     if (l not in gene_list):
+    #         raise ValueError('String2 is not a gene')
+
     # create substring by generating overlap with strings
     substring = get_overlap(string1,string2, len(string1), len(string2))
-    # print_union(string1,string2,string_union(string1,string2, substring))
+    # get the union using substring result
+    union_result = string_union(string1, string2, substring)
+    # print in desired format
+    print("**************************************")
+    print("String 1 -", string1)
+    print("String 2 -", string2)
+    print("shortest string that has both as substring")
+    print(union_result, "(" + str(len(union_result)) + ")")
+    print("**************************************")
 
 main()
