@@ -36,7 +36,12 @@ def get_overlap(string1, string2, len_string1, len_string2):
     # automatic case if the strings are the same, return the string
     if (string1 == string2):
         return [string1]
-
+    # if string is substring of another
+    elif (string1 in string2):
+        return [string2]
+    elif (string2 in string1):
+        return [string1]
+        
     #string1 is associated with horizontal diraction
     #string2 is associated with vertical direction
     #everything initially filled in with 0's
@@ -99,11 +104,6 @@ def get_overlap(string1, string2, len_string1, len_string2):
     # if the largest shared size == 0
     if (large_share == 0):
         return [string1 + string2, string2 + string1]
-    # if string is substring of another
-    elif (large_share == len(string1)):
-        return [string2]
-    elif (large_share == len(string2)):
-        return [string1]
     # if string is somewhere inbetween (either in front or in middle)
     elif (large_share_pos[1]+1 == len(string2)):
         return[string1+string2]
