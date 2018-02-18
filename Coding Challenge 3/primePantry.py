@@ -1,16 +1,23 @@
 '''
 Author: Tiffany Xiao
-Date: January 25, 2018
+Date: February 18, 2018
 
 Objective of challenge:
-Given a sequence of (integer, positive-valued) item weights,
-identify whether or not there is a subset that could fill a
-Prime Pantry Box to exactly 100%
+Given a dictionary of items and their (integer, positive-valued) item weights, identify
+whether or not there is a subset that could fill a Prime Pantry Box to exactly 100%% and
+report which items are in the subset
+
+Example function call:
+primePantryV2({“pepsi”:55,“detergent”:30, “chips”:25, “cereal”:15}, 4, 100)
+
+Desired output:
+[“pepsi”, “detergent”, “cereal”]
+
+You only need to return one correct match to get full credit. Bonus point if you can return all matches. Rubric forthcoming.
 
 Auther notes:
 
 To do:
--sort it
 '''
 import multiprocessing as mp
 

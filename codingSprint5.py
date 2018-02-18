@@ -50,25 +50,6 @@ def dp_steps(n, knownResults):
         knownResults[num-1] = minStep
     print knownResults
 
-    #     # Check against each value (2 or 3)
-    #     for j in [value for value in numValues if num % value != 0]:
-    #         # If using the current value size lets us reuse a prior result,
-    #         # just update:
-    #         if int(knownResults[n-j]) + 1 < minStep:
-    #             minStep = int(knownResults[n-j])+1
-    #
-    #
-    #     # Check if it can fit 3, 2 or 1
-    #     if
-    #
-    #     # Store for use in future computation
-    #     knownResults[n-1] = minStep
-    #
-    # return knownResults[n-1]
-
-
-
-
 def main():
     # get user input for the interger n
     n = int(raw_input("Please input a positive integer"))
