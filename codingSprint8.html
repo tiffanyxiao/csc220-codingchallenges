@@ -13,7 +13,15 @@ Write a JS script that counts down to your favorite holiday.
   <head>
     <center>
    	  <h2>Number of Days Until Tiffany's Birthday</h2>
-      <h1 id = "date"> INFINITY </h1>
+      <h1 id = "date">  </h1>
+      <h3> (This means <p id = "date2" style="display:inline">  </p> days left to get me a present, thank you!) </h3>
+      <h4> Here's the exact number of days all the way down to the second: </h4>
+      <p id="demo"></p>
+      <br>
+      <br>
+      <br>
+      <br>
+      <p> This project was created for a coding sprint for CSC 220 - Spring 2018 by Tiffany Xiao.</p>
     </center>
   </head>
 <body>
@@ -31,9 +39,42 @@ Write a JS script that counts down to your favorite holiday.
   favorite_holiday.setMonth(10);
   favorite_holiday.setDate(3);
 
+  // calculate difference between dates
   let num_days = Math.ceil((favorite_holiday-today)/86400000);
 
+  // display results on page
   document.getElementById("date").innerHTML = num_days;
+  document.getElementById("date2").innerHTML = num_days;
+
+  // lets create a count down clock
+  // get the time of the date we're counting down to
+  var countDownDate = favorite_holiday.getTime();
+
+  // Update the count down every 1 second
+  var x = setInterval(function() {
+
+      // get todays date and time
+      var now = new Date().getTime();
+
+      // find the distance between now an the count down date
+      var distance = countDownDate - now;
+
+      // time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // output the result in an element with id="demo"
+      document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+      // if the count down is over, write some text
+      if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+  }, 1000);
 
   </script>
  </body>
