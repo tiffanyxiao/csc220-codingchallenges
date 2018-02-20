@@ -9,7 +9,7 @@ Focuses on several advanced programming environments, with a project for each. I
 Coding sprints are short objectives given at the end of class, while coding challenges are week long projects.
 
 ## Website
-
+View [this link] https://tiffanyxiao.github.io/csc220-codingchallenges/ to see projects on an HTML website. I've created this website for the sole purpose of allowing viewers to be able to easily see projects (such as Javascript and HTML projects). 
 
 ## Python
 The following challenges and sprints utilize python as the main programming language:
