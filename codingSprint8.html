@@ -1,0 +1,40 @@
+<!---
+Author: Tiffany Xiao
+Date: February 20, 2018
+Title: The calendar countdown
+
+Objective of challenge:
+Write a JS script that counts down to your favorite holiday.
+
+--->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <center>
+   	  <h2>Number of Days Until Tiffany's Birthday</h2>
+      <h1 id = "date"> INFINITY </h1>
+    </center>
+  </head>
+<body>
+  <script>
+
+  "use strict"; // enable modern JS features
+
+
+  // create variable storing current date
+  let today = new Date();
+  //alert(today);
+
+  // create variable storing current date
+  let favorite_holiday = new Date();
+  favorite_holiday.setMonth(10);
+  favorite_holiday.setDate(3);
+
+  let num_days = Math.ceil((favorite_holiday-today)/86400000);
+
+  document.getElementById("date").innerHTML = num_days;
+
+  </script>
+ </body>
+</html>
