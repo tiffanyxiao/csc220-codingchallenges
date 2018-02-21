@@ -35,28 +35,36 @@ def primePantry(list_items, n_items, total) :
     total - total/sum requested (100 in this challenge)
     '''
     # create list of ints with list_items
-    list_items = [int(i) for i in range(len(list_items))]
+    list_items = [int(i) for i in list_items.strip('[]').split(',')]
 
-    # return True if there's an element equal to total
-    subset = [[True] * (total+1)] * (n_items+1)
+    # check for some cases in which we do not need to run the entire function
+    if total < 0 or total > sum(list_items):
+        print("False")
+        sys.exit()
 
-    # if the total is 0, return true
-    for i in range(0, n_items+1) :
-        subset[i][0] = True
+    # create boolean array to fill the array with all the sub-totals from the subsets
+    # initialize all subsets to false
+    # note: sub-totals will be true when they have reached the total value
+    subset = [False] * (total + 1)
+    # set totals at index 0 to true
+    subset[0] = True
 
-    # if the total is not 0 and there is nothing in the list, then its False
-    for i in range(1, total + 1) :
-        subset[0][i] = False
+    # address base case (there's only one element, and the element is equivalent to total)
+    if (n_items == 1 and list_items[0] == total):
+        return True
 
-    # create a 2D array, and fill it up from bottom up. The value of the element
-    # is true if there is a subset with total equal to i, or else it's false
-    for i in range(1, n_items+1) :
-        for j in range(1, total+1) :
-            if(j < list_items[i-1]) :
-                subset[i][j] = subset[i-1][j]
-            if (j >= list_items[i-1]) :
-                subset[i][j] = subset[i-1][j] or subset[i - 1][j-list_items[i-1]]
-
-    return subset[n_items][total]
+    # fill in boolean array
+    sub_total = 0
+    while not subset[total] and sub_total < len( list_items ):
+      a = list_items[sub_total]
+      q = total
+      while not subset[total] and q >= a:
+        if not subset[q] and subset[q - a]:
+          subset[q] = True
+        q -= 1
+      sub_total += 1
+    # print result
+    print(subset[total])
+    sys.exit()
 
 primePantry(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))
