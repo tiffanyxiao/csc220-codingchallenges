@@ -1,7 +1,7 @@
 '''
 Author: Tiffany Xiao
 Date: February 8, 2018
-Title: Redundancy Detector
+Title: Minimum Steps to One
 
 Objective of challenge:
 use dynamic programming to efficiently solve the following riddle:
@@ -13,53 +13,25 @@ following 3 steps:
 3. If n is divisible by 3, divide by 3.
 What is the minimum number of steps that takes n to 1?
 **********************************************************
-
-Output expected:
-
-
-Description:
-
-Todo:
--Try/catch for invalid inputs
-
 '''
-
-def dp_steps(n, knownResults):
-    ''' Function to compute minimum number of steps
-    Parameters:
-    n - positive integer n (to calculate number of steps for)
-    knownResults - previously calculated steps
-    '''
-    # Loop over all values, in order
-    for num in range(1, n+1):
-        # Worst case: subtract 1 constantly already addressed in beginning
-
-        # initialize minimum number of steps
-        minStep = 0
-
-        # Calculate number of steps
-        while(num != 1):
-            # Check if it can be divided by 3
-            if num%3==0:
-                num = (num/3)
-            elif num%2==0:
-                num = (num/2)
-            else:
-                num -= 1
-            minStep += 1
-        knownResults[num-1] = minStep
-    print knownResults
 
 def main():
     # get user input for the interger n
-    n = int(raw_input("Please input a positive integer"))
+    num = int(input("Please input a positive integer: "))
 
-    knownResults = [n] * n
+    # create and initialize arrays storing output and result
+    out = [num]*(num+1)
 
-    dp_steps(n,knownResults)
+    # establish base case
+    out[1] = 0;
+    # go through each number in num and determine if they can be divide by 2 or 3
+    for i in range(2, num+1, 1):
+        out[i] = out[i-1] + 1
+        if (i%2 == 0):
+            out[i] = min(1 + out[int(i/2)], out[i])
+        if (i%3 == 0):
+            out[i] = min(1 + out[int(i/3)], out[i])
 
-    # test = dp_steps([1,2,3],n,knownResults)
-    # print(test)
-
+    print("The minimum number of steps to go down to 1 is: ", out[num])
 
 main()
