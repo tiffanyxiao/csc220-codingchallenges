@@ -24,23 +24,35 @@ max. recursion depth 1000
 Auther notes:
 
 '''
-def primePantry(boxes, n_items, total):
-    all_pantries = []
-    for box in boxes:
-        one_pantry = [box]
-        weight = box
-        for otherbox in boxes:
-            if (weight + otherbox <= total) and (otherbox not in one_pantry):
-                one_pantry.append(otherbox)
-                weight += otherbox
-        if weight == 100:
-            return True
-    return False
+def primePantry(list_items, n_items, total) :
+    ''' Function identifies whether or not there is a subset that could fill a
+    Prime Pantry Box to exactly 100%
 
-def main():
-    ''' Function to test primePantry function '''
-    primeComplete = primePantry([55, 22, 30, 15], 4, 100)
-    if primeComplete:
-        print("True")
+    list_items - list of all item weights (integer, positive valued)
+    n_items - number of items in list_items
+    total - total/sum requested (100 in this challenge)
+    '''
 
-main()
+    # return True if there's an element equal to total
+    subset = [[True] * (total+1)] * (n_items+1)
+
+    # if the total is 0, return true
+    for i in range(0, n_items+1) :
+        subset[i][0] = True
+
+    # if the total is not 0 and there is nothing in the list, then its False
+    for i in range(1, total + 1) :
+        subset[0][i] = False
+
+    # create a 2D array, and fill it up from bottom up. The value of the element
+    # is true if there is a subset with total equal to i, or else it's false
+    for i in range(1, n_items+1) :
+        for j in range(1, total+1) :
+            if(j < list_items[i-1]) :
+                subset[i][j] = subset[i-1][j]
+            if (j >= list_items[i-1]) :
+                subset[i][j] = subset[i-1][j] or subset[i - 1][j-list_items[i-1]]
+
+    print("hello")
+
+    return subset[n_items][total]
