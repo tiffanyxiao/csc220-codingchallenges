@@ -8,11 +8,11 @@ identify whether or not there is a subset that could fill a
 Prime Pantry Box to exactly 100%
 
 How your function should run:
-primePantry(list, n_items, total)
+prime_pantry(list, n_items, total)
 '''
 import sys
 
-def primePantry(list_items, n_items, total) :
+def prime_pantry(list_items, n_items, total) :
     ''' Function identifies whether or not there is a subset that could fill a
     Prime Pantry Box to exactly 100%
 
@@ -59,4 +59,4 @@ def primePantry(list_items, n_items, total) :
     print(subset[total])
     sys.exit()
 
-primePantry(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))
+prime_pantry(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]))
