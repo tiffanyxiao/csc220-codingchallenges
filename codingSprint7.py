@@ -9,20 +9,6 @@ Prime Pantry Box to exactly 100%
 
 How your function should run:
 primePantry(list, n_items, total)
-
-Test Cases:
-Trial 1: 10 items
-Trial 2: 500 items
-Trial 3: 10000 items
-If correct, run 1000 times, keep best
-
-About the test machine:
-MacOS
-4 cores
-max. recursion depth 1000
-
-Auther notes:
-
 '''
 import sys
 
@@ -50,19 +36,25 @@ def primePantry(list_items, n_items, total) :
     subset[0] = True
 
     # address base case (there's only one element, and the element is equivalent to total)
-    if (n_items == 1 and list_items[0] == total):
-        return True
+    if (n_items == 1 and list_items[0] == total) or total in list_items:
+        print("True")
+        sys.exit()
 
-    # fill in boolean array
-    sub_total = 0
-    while not subset[total] and sub_total < len( list_items ):
-      a = list_items[sub_total]
-      q = total
-      while not subset[total] and q >= a:
-        if not subset[q] and subset[q - a]:
-          subset[q] = True
-        q -= 1
-      sub_total += 1
+    # list all the sums between 0 and total, and try to find a subset for each sum until
+    # we find a sum for x (or reach the end of the list of items)
+    iterator = 0
+    # continue to fill while we have not reached end of subset and iterator is not at end
+    while not subset[total] and iterator < len( list_items ):
+        current_item = list_items[iterator]
+        current_pos = total
+        # try to find a subset for the current_pos
+        while not subset[total] and current_pos >= current_item:
+            if not subset[current_pos] and subset[current_pos - current_item]:
+                subset[current_pos] = True
+            current_pos -= 1
+        print(subset)
+        iterator += 1
+
     # print result
     print(subset[total])
     sys.exit()
