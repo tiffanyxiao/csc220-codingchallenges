@@ -51,7 +51,7 @@ def prime_pantry(dictItems, nItems, total) :
 
     # set totals at index 0 to true
     subset[0][0] = True
-    print(subset)
+    subset[0][1].append(0)
 
     # address base case (there's only one element, and the element is equivalent to total)
     if (nItems == 1 and dictList[0][1] == total) or total in dictList:
@@ -68,16 +68,20 @@ def prime_pantry(dictItems, nItems, total) :
         # try to find a subset for the currentPos
         while not subset[total][0] and currentPos >= currentItem:
             if not subset[currentPos][0] and subset[currentPos - currentItem][0]:
-                subset[currentPos][1].append(currentPos)
-                subset[currentPos][1].append(currentPos-currentItem)
+                subset[currentPos][1].append(currentPos-(currentPos - currentItem))
+                subset[currentPos][1].extend(subset[currentPos-currentItem][1])
                 subset[currentPos][0] = True
             currentPos -= 1
-        print(subset[currentPos+1][1])
         iterator += 1
-        print(subset)
 
     # print result
     print(subset[total][0])
+    if (subset[total][0]):
+        print("Items: ")
+        for key, value in dictItems.items():
+            if value in subset[total][1]:
+                print(key, end = " ")
+    print(" ")
     sys.exit()
 
 prime_pantry(ast.literal_eval(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
