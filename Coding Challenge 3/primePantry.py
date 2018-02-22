@@ -1,5 +1,6 @@
 '''
 Author: Tiffany Xiao
+Collaborator: Karen Santamaria
 Date: February 18, 2018
 
 Objective of challenge:
@@ -13,6 +14,7 @@ primePantryV2({“pepsi”:55,“detergent”:30, “chips”:25, “cereal”:1
 Desired output:
 [“pepsi”, “detergent”, “cereal”]
 '''
+
 import sys
 import ast
 
@@ -46,10 +48,7 @@ def prime_pantry(dictItems, nItems, total) :
     # create 2-d array to fill the array with all the sub-totals from the subsets
     # and the subset that creates the sub-total
     # initialize all subsets to a list with false and an empty list
-    allSubset = []
-    for i in range(total+1):
-        sub_subset = [False,[]]
-        allSubset.append(sub_subset)
+    allSubset = [[False, []] for i in range(total+1)]
 
     # set total at index 0 to true, and append 0 the subset
     allSubset[0][0] = True
