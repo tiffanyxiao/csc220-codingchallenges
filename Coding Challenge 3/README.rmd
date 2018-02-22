@@ -1,0 +1,19 @@
+# Gene Splicing
+Objective of Program: Given two strings representing snippets of genes (letters ACGT), identify the shortest string that could contain them both as subsequences.
+
+## How to Run:
+1. Run python program "primePantry.py" with command "python" in terminal (note: we are using python 3.6.3) with dictionary, number of items and total as command line arguments.
+For example: python primePantry.py() "{'pepsi':55,'detergent':30, 'chips':25, 'cereal':15}" 4 100
+Note: The dictionary is incased in double quotes, and each key in the dictionary is incased in single quotes.
+
+## Python Version
+Python 3.6.3
+
+## Efficiency
+
+
+## Project Collaborators:
+Tiffany Xiao, Karen Santamaria
+
+### Note:
+The project can be found on [Github](https://github.com/tiffanyxiao/csc220-codingchallenges/blob/master/Coding%20Challenge%202/geneSplicing.py).
