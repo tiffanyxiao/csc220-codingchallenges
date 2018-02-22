@@ -56,7 +56,7 @@ def prime_pantry(dictItems, nItems, total) :
     # address base case (there's only one element, and the element is equivalent to total)
     if (nItems == 1 and dictList[0][1] == total) or total in dictList:
         print("True")
-        sys.exit()
+        return
 
     # list all the sums between 0 and total, and try to find a subset for each sum until
     # we find a sum for x (or reach the end of the list of items)
@@ -75,13 +75,33 @@ def prime_pantry(dictItems, nItems, total) :
         iterator += 1
 
     # print result
-    print(subset[total][0])
+    allItems = []
     if (subset[total][0]):
-        print("Items: ")
+        numItems = 0
         for key, value in dictItems.items():
             if value in subset[total][1]:
-                print(key, end = " ")
-    print(" ")
-    sys.exit()
+                numItems += 1
+                if numItems == len(subset[total][1]):
+                    break
+                allItems.append(key)
+        print(allItems)
+    else:
+        print("There are no items that perfectly add up to", total)
+        # find closest number that is true
+        position = 0
+        for i in range(len(subset)-1,0,-1):
+            if subset[i][0]:
+                position = i
+                break
+        numItems = 0
+        for key, value in dictItems.items():
+            if value in subset[position][1]:
+                numItems += 1
+                if numItems == len(subset[position][1]):
+                    break
+                allItems.append(key)
+        print(allItems)
+
+    return
 
 prime_pantry(ast.literal_eval(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
