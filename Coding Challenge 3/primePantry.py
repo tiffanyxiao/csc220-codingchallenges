@@ -86,7 +86,8 @@ def prime_pantry(dictItems, nItems, total) :
             if subset[i][0]:
                 position = i
                 break
-        print("The closest-without-going-over solution is: total =", position)
+        if (position != 0):
+            print("The closest-without-going-over solution is: total =", position)
     numItems = 0
     for key, value in dictItems.items():
         if value in subset[position][1]:

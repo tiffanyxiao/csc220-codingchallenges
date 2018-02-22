@@ -10,7 +10,16 @@ Note: The dictionary is incased in double quotes, and each key in the dictionary
 Python 3.6.3
 
 ## Efficiency
+This project is as efficient as a dynamic programming solution since the solution we implemented is dynamic programming. Our program implements dynamic programming by building on previous knowledge - we list all the sums between 0 and total (for example, from 0 to 4 we have the sums 0, 1, 2, 3, 4), and try to find a subset for each sum (i.e. 4 has a subset of 3 and 1) until we find a sum for x (or reach the end of the list of items). Finding a sum depends on previous sums (this is where previous knowledge is utilized). Once a match is found or we've reached the end of the list of items, the search ends. This is efficient when there are more than one possibly ways to get to a number, as it will immediately end the search after finding one output. 
 
+## Bonus point description
+For our program, we implemented the bonus point in which "if there is no solution, returns the closest-without-going-over solution".
+* If there is a solution less than the total inputted, the program will return the next largest solution.
+* If there is no solution less than the total inputted, the program will print a line stating "Unfortunately, there are no items for you ..."
+
+## Notes about program
+* The program will not allow an item with 0 weight.
+* The program will return at least one list of items that fills the box to the indicated total amount.
 
 ## Project Collaborators:
 Tiffany Xiao, Karen Santamaria
