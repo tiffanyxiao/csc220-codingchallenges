@@ -1,8 +1,8 @@
-# Gene Splicing
-Objective of Program: Given two strings representing snippets of genes (letters ACGT), identify the shortest string that could contain them both as subsequences.
+# Prime Pantry V2
+Given a dictionary of items and their (integer, positive-valued) item weights, identify whether or not there is a subset that could fill a Prime Pantry Box to exactly 100% and report which items are in the subset.
 
 ## How to Run:
-1. Run python program "primePantry.py" with command "python" in terminal (note: we are using python 3.6.3) with dictionary, number of items and total as command line arguments.
+Run python program "primePantry.py" with command "python" in terminal (note: we are using python 3.6.3) with dictionary, number of items and total as command line arguments.
 For example: python primePantry.py() "{'pepsi':55,'detergent':30, 'chips':25, 'cereal':15}" 4 100
 Note: The dictionary is incased in double quotes, and each key in the dictionary is incased in single quotes.
 
@@ -18,11 +18,11 @@ For our program, we implemented the bonus point in which "if there is no solutio
 * If there is no solution less than the total inputted, the program will print a line stating "Unfortunately, there are no items for you ..."
 
 ## Notes about program
-* The program will not allow an item with 0 weight.
+* The program will not allow an item with weights less than or equal to zero.
 * The program will return at least one list of items that fills the box to the indicated total amount.
 
 ## Project Collaborators:
 Tiffany Xiao, Karen Santamaria
 
 ### Note:
-The project can be found on [Github](https://github.com/tiffanyxiao/csc220-codingchallenges/blob/master/Coding%20Challenge%202/geneSplicing.py).
+The project can be found on [Github](https://github.com/tiffanyxiao/csc220-codingchallenges/blob/master/Coding%20Challenge%203/primePantry.py).
