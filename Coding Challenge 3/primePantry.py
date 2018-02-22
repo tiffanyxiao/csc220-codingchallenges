@@ -20,16 +20,21 @@ import ast
 
 def prime_pantry(dictItems, nItems, total) :
     ''' Function identifies whether or not there is a subset that could fill a
-    Prime Pantry Box to exactly 100%, or the closest-without-going-over total
+    Prime Pantry Box to exactly 100%, or the closest-without-going-over total, then
+    prints the solution in desired output format.
 
     Parameters:
     dictItems - dictionary of all items and their weights
     nItems - number of items in dictItems
     total - total/sum requested (100 in this challenge)
     '''
-     # number of items and total to add must be >0
-    if not(nItems > 0)  or not(total > 0):
+    # checking input: number of items and total to add must be >0
+    if not(nItems > 0) or not(total > 0):
         raise Exception("Number of items and total must be greater than 0.")
+    if not(dictItems):
+        raise Exception("Dictionary cannot be empty.")
+    if(nItems != len(dictItems)):
+        raise Exception("Number of items must be equal to length of dictionary.")
 
     # convert dictionary into list of lists to easily iterate through
     dictList = []
@@ -41,7 +46,7 @@ def prime_pantry(dictItems, nItems, total) :
         if(not isinstance(value, int)):
             raise Exception('All item weights must be integers.')
         if(value <= 0):
-            #all weights must be >0
+            #all weights must be > 0
             raise Exception('Weight of one of the items is less than or equal to 0.')
         dictList.append(temp)
 
@@ -96,7 +101,7 @@ def prime_pantry(dictItems, nItems, total) :
             print("The closest-without-going-over solution is: total =", largest)
         # if largest is 0, then print that there are no items
         else:
-            print("Unfortunately, there are no items for you ...")
+            print("Unfortunately, there are no items for you (there is no solution) ...")
             return
     # find items that match with the weights in our subset list
     numItems = 0

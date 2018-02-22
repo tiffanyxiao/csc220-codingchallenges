@@ -3,7 +3,9 @@ Given a dictionary of items and their (integer, positive-valued) item weights, i
 
 ## How to Run:
 Run python program "primePantry.py" with command "python" in terminal (note: we are using python 3.6.3) with dictionary, number of items and total as command line arguments.
+
 For example: python primePantry.py() "{'pepsi':55,'detergent':30, 'chips':25, 'cereal':15}" 4 100
+
 Note: The dictionary is incased in double quotes, and each key in the dictionary is incased in single quotes.
 
 ## Python Version
@@ -24,5 +26,5 @@ For our program, we implemented the bonus point in which "if there is no solutio
 ## Project Collaborators:
 Tiffany Xiao, Karen Santamaria
 
-### Note:
+### Other:
 The project can be found on [Github](https://github.com/tiffanyxiao/csc220-codingchallenges/blob/master/Coding%20Challenge%203/primePantry.py).
