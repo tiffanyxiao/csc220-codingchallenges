@@ -81,8 +81,10 @@ def prime_pantry(dictItems, nItems, total) :
     allItems = []
     # keep track of the "largest" total (either total or the without-going-over solution)
     largest = 0
+    # if a subset exists for total, largest = total
     if (allSubset[total][0]):
         largest = total
+    # else, look for the without-going-over solution
     else:
         print("There are no items that perfectly add up to", total)
         # find closest number that is true
@@ -92,9 +94,11 @@ def prime_pantry(dictItems, nItems, total) :
                 break
         if (largest != 0):
             print("The closest-without-going-over solution is: total =", largest)
+        # if largest is 0, then print that there are no items
         else:
             print("Unfortunately, there are no items for you ...")
             return
+    # find items that match with the weights in our subset list
     numItems = 0
     for key, value in dictItems.items():
         if value in allSubset[largest][1]:
@@ -102,6 +106,7 @@ def prime_pantry(dictItems, nItems, total) :
             if numItems == len(allSubset[largest][1]):
                 break
             allItems.append(key)
+    # print all items
     print("Number of Items: ", len(allItems))
     print(allItems)
 
