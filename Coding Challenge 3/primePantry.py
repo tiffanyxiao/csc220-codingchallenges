@@ -77,14 +77,7 @@ def prime_pantry(dictItems, nItems, total) :
     # print result
     allItems = []
     if (subset[total][0]):
-        numItems = 0
-        for key, value in dictItems.items():
-            if value in subset[total][1]:
-                numItems += 1
-                if numItems == len(subset[total][1]):
-                    break
-                allItems.append(key)
-        print(allItems)
+        position = total
     else:
         print("There are no items that perfectly add up to", total)
         # find closest number that is true
@@ -93,14 +86,18 @@ def prime_pantry(dictItems, nItems, total) :
             if subset[i][0]:
                 position = i
                 break
-        numItems = 0
-        for key, value in dictItems.items():
-            if value in subset[position][1]:
-                numItems += 1
-                if numItems == len(subset[position][1]):
-                    break
-                allItems.append(key)
+        print("The closest-without-going-over solution is: total =", position)
+    numItems = 0
+    for key, value in dictItems.items():
+        if value in subset[position][1]:
+            numItems += 1
+            if numItems == len(subset[position][1]):
+                break
+            allItems.append(key)
+    if allItems:
         print(allItems)
+    else:
+        print("Unfortunately, there are no items for you ...")
 
     return
 
