@@ -53,7 +53,7 @@ a {
 #main_nav li {
 	float: left;
 	position: relative;
-	width: 175px;
+	width: 150px;
 	list-style: none;
 	-webkit-transition: .5s;
 	transition: .5s;
