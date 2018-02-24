@@ -19,8 +19,14 @@ CHALLENGE: Include youtube video embed
 <html>
   <style>
     div{
+      float: center;
+    }
+    div div{
       float: left;
       width: 20%;
+    }
+    iframe{
+      width: 60%
     }
   </style>
   <title>CSC220 - TIFFANY XIAO</title>
@@ -80,39 +86,63 @@ CHALLENGE: Include youtube video embed
     <center>
         <h1> Tiffany's Favorite Songs </h1>
         <div>
-          <h2 id = "song1"> Song #1: </h2>
-          <img id = "song1Art" src="" width = "95%" height = "95%">
-          <h3 id = "song1Album"> Album Name </h3>
-          <h2 id = "song1Artist"> Artist Name </h2>
-          <h3 id = "song1Date"> Release Date </h3>
+          <div>
+            <h2 id = "song1"> Song #1: </h2>
+            <img id = "song1Art" src="" width = "95%" height = "95%">
+            <h3 id = "song1Album"> Album Name </h3>
+            <h2 id = "song1Artist"> Artist Name </h2>
+            <h3 id = "song1Date"> Release Date </h3>
+            <h4 id = ""></h4>
+          </div>
+          <iframe id = "song1Youtube" width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
+        <br>
+        <p style = "clear:left;">
         <div>
-          <h2 id = "song2"> Song #2: </h2>
-          <img id = "song2Art" src="" width = "95%" height = "95%">
-          <h3 id = "song2Album"> Album Name </h3>
-          <h2 id = "song2Artist"> Artist Name </h2>
-          <h3 id = "song2Date"> Release Date </h3>
+          <div>
+            <h2 id = "song2"> Song #2: </h2>
+            <img id = "song2Art" src="" width = "95%" height = "95%">
+            <h3 id = "song2Album"> Album Name </h3>
+            <h2 id = "song2Artist"> Artist Name </h2>
+            <h3 id = "song2Date"> Release Date </h3>
+          </div>
+          <iframe id = "song2Youtube" width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
+        <br>
+        <p style = "clear:left;">
         <div>
-          <h2 id = "song3"> Song #3: </h2>
-          <img id = "song3Art" src="" width = "95%" height = "95%">
-          <h3 id = "song3Album"> Album Name </h3>
-          <h2 id = "song3Artist"> Artist Name </h2>
-          <h3 id = "song3Date"> Release Date </h3>
+        <div>
+            <h2 id = "song3"> Song #3: </h2>
+            <img id = "song3Art" src="" width = "95%" height = "95%">
+            <h3 id = "song3Album"> Album Name </h3>
+            <h2 id = "song3Artist"> Artist Name </h2>
+            <h3 id = "song3Date"> Release Date </h3>
+          </div>
+          <iframe id = "song3Youtube" width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
+        <br>
+        <p style = "clear:left;">
         <div>
-          <h2 id = "song4"> Song #4: </h2>
-          <img id = "song4Art" src="" width = "95%" height = "95%">
-          <h3 id = "song4Album"> Album Name </h3>
-          <h2 id = "song4Artist"> Artist Name </h2>
-          <h3 id = "song4Date"> Release Date </h3>
+          <div>
+            <h2 id = "song4"> Song #4: </h2>
+            <img id = "song4Art" src="" width = "95%" height = "95%">
+            <h3 id = "song4Album"> Album Name </h3>
+            <h2 id = "song4Artist"> Artist Name </h2>
+            <h3 id = "song4Date"> Release Date </h3>
+          </div>
+          <iframe id = "song4Youtube" width="560" height="315" src="https://www.youtube.com/embed/1rfSHisyHdc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
+        <br>
+        <p style = "clear:left;">
         <div>
-          <h2 id = "song5"> Song #5: </h2>
-          <img id = "song5Art" src="" width = "95%" height = "95%">
-          <h3 id = "song5Album"> Album Name </h3>
-          <h2 id = "song5Artist"> Artist Name </h2>
-          <h3 id = "song5Date"> Release Date </h3>
+          <div>
+            <h2 id = "song5"> Song #5: </h2>
+            <img id = "song5Art" src="" width = "95%" height = "95%">
+            <h3 id = "song5Album"> Album Name </h3>
+            <h2 id = "song5Artist"> Artist Name </h2>
+            <h3 id = "song5Date"> Release Date </h3>
+          </div>
+          <iframe id = "song5Youtube" width="560" height="315" src="https://www.youtube.com/embed/1rfSHisyHdc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
         <p> This project was created for a coding sprint for CSC 220 - Spring 2018 by Tiffany Xiao.</p>
     </center>
@@ -120,19 +150,20 @@ CHALLENGE: Include youtube video embed
 
   "use strict"; // enable modern JS features
 
-  function Song(name, artist, album, releaseDate, coverArt){
+  function Song(name, artist, album, releaseDate, coverArt, youtube){
     this.name = name;
     this.artist = artist;
     this.album = album;
     this.releaseDate = releaseDate;
     this.coverArt = coverArt;
+    this.youtube = youtube;
   }
 
-  let castle = new Song("Castle","Halsey","Badlands", "2015","https://images.genius.com/092840365d93c9685b8309a50e46793f.1000x1000x1.jpg");
-  let greenLight = new Song("Green Light","Lorde","Melodrama", "2017","https://media.wmagazine.com/photos/58b896134d6f3875353c41d5/master/pass/17077435_215844885557762_2076647443876806656_n.jpg");
-  let saveMe = new Song("Save Me","BTS","Youth", "2016","https://t2.genius.com/unsafe/300x0/https%3A%2F%2Fimages.genius.com%2F97a51159958d0ed00ae1b537354d0312.614x614x1.jpg");
-  let kissesBack = new Song("Kisses Back","Matthew Koma","Single", "2016","https://images.shazam.com/coverart/t334070253-b1170704985_s400.jpg");
-  let beGood = new Song("I'll Be Good","Jaymes Young","Feel Something", "2017","https://images.genius.com/c2665c72238ddcf8e49faae03f3d49cf.1000x1000x1.jpg");
+  let castle = new Song("Castle","Halsey","Badlands", "2015","https://images.genius.com/092840365d93c9685b8309a50e46793f.1000x1000x1.jpg","https://www.youtube.com/embed/1rfSHisyHdc");
+  let greenLight = new Song("Green Light","Lorde","Melodrama", "2017","https://media.wmagazine.com/photos/58b896134d6f3875353c41d5/master/pass/17077435_215844885557762_2076647443876806656_n.jpg", "https://www.youtube.com/embed/GMspRjUvfAE");
+  let saveMe = new Song("Save Me","BTS","Youth", "2016","https://t2.genius.com/unsafe/300x0/https%3A%2F%2Fimages.genius.com%2F97a51159958d0ed00ae1b537354d0312.614x614x1.jpg", "https://www.youtube.com/embed/CfxD2D-V46E");
+  let kissesBack = new Song("Kisses Back","Matthew Koma","Single", "2016","https://images.shazam.com/coverart/t334070253-b1170704985_s400.jpg", "https://www.youtube.com/embed/wyA0MjMU2Hw");
+  let beGood = new Song("I'll Be Good","Jaymes Young","Feel Something", "2017","https://images.genius.com/c2665c72238ddcf8e49faae03f3d49cf.1000x1000x1.jpg","https://www.youtube.com/embed/scd-uNNxgrU");
 
   let songs = [castle, greenLight, saveMe, kissesBack, beGood];
 
@@ -152,6 +183,7 @@ CHALLENGE: Include youtube video embed
     document.getElementById(elementName+"Album").innerHTML =  songs[i].album;
     document.getElementById(elementName+"Artist").innerHTML =  songs[i].artist;
     document.getElementById(elementName+"Date").innerHTML =  songs[i].releaseDate;
+    document.getElementById(elementName+"Youtube").src = songs[i].youtube;
   }
 
   </script>
