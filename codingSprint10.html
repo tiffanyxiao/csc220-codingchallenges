@@ -1,0 +1,140 @@
+<!---
+Author: Tiffany Xiao
+Date: February 27, 2018
+Title: Letter Frequency
+
+Objective of challenge:
+build a function that takes in a collection of strings, like
+
+“the”, “quick”, “brown”, “fox”, “jumped”
+“over”, “the”, “lazy”, “dog”
+
+and returns an object pairing each letter with its
+frequency of occurrence in the input strings:
+{a:1, b:1, c:1, d:2, e:4,...}
+--->
+
+<!DOCTYPE html>
+<html>
+  <title>CSC220 - TIFFANY XIAO</title>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+  <center>
+    <nav id = "main_nav">
+      <ul>
+        <li>
+          <a href ="index.html"> Home </a>
+        </li>
+        <li>
+          <a href =""> Python </a>
+          <ul>
+            <li><a href = ""> Challenges </a>
+            </li>
+            <li><a href = ""> Sprints </a></li>
+          </ul>
+        </li>
+        <li>
+          <a href ="Webpages/Javascript.html"> Javascript </a>
+          <ul>
+            <li><a href = ""> Challenges </a>
+            </li>
+            <li><a href = ""> Sprints </a>
+            <ul>
+              <li><a href = "codingSprint8.html"> Sprint #1 </a></li>
+              <li><a href = "codingSprint9.html"> Sprint #2 </a></li>
+            </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href =""> Java </a>
+          <ul>
+            <li><a href = ""> Challenges </a>
+            </li>
+            <li><a href = ""> Sprints </a></li>
+          </ul>
+        </li>
+        <li>
+          <a href =""> Julia </a>
+          <ul>
+            <li><a href = ""> Challenges </a>
+            </li>
+            <li><a href = ""> Sprints </a></li>
+          </ul>
+        </li>
+        <li>
+          <a href =""> Contact </a>
+        </li>
+      </ul>
+    </nav>
+  </center>
+  <center>
+    <h1> Letter Frequency </h1>
+    <h2> Objective of challenge: </h2>
+    <p> build a function that takes in a collection of strings, like
+    <br>
+    “the”, “quick”, “brown”, “fox”, “jumped”
+    “over”, “the”, “lazy”, “dog”
+    <br>
+    and returns an object pairing each letter with its
+    frequency of occurrence in the input strings:
+    {a:1, b:1, c:1, d:2, e:4,...} </p>
+    <br>
+    <h2> Description of my solution: </h2>
+    I created a dictionary object that utilized the letter as the key and the value as the string.
+    <br>
+    Then I looped through each character of each inputted string in a function (using spread to take
+    in arguments since we do not know how many strings there are), and added 1 to the value of the key
+    in my dictionary (where the key is the letter of the word).
+    <br>
+    After updating my dictionary, I printed it by looping through each key, value pair.
+    <br>
+    Finally, I return the results and alert it!
+    <br>
+    <br>
+    <h2> Test Case: </h2>
+    <p>
+    The test case utilized is an array of strings containing 'apple','banana','coconut','mango','peach' and 'strawberry'.
+    <br>
+    Refresh to view the output! 
+    </p>
+  </center>
+
+  <script>
+
+  "use strict"; // enable modern JS features
+
+  // create a dictionary to store all letters and their values (initial 0)
+  var dict = {
+    'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0,'f': 0,'g': 0,'h': 0, 'i': 0, 'j': 0, 'k': 0, 'l': 0,
+    'm': 0,'n': 0,'o': 0,'p': 0, 'q': 0, 'r': 0, 's': 0, 't': 0,'u': 0,'v': 0, 'w': 0, 'x': 0, 'y': 0, 'z': 0
+  };
+
+  let strings = ['apple','banana','coconut','mango','peach','strawberry'];
+
+  function frequency(...args){
+    let results = "";
+    // count each letter in each word
+    for(let value of args){
+      for (var i = 0; i < value.length; i++) {
+        dict[value.charAt(i)] += 1;
+      }
+    }
+    // convert dictionary into string
+    results += "{"
+    for(var key in dict){
+      var value = dict[key];
+      results += ' ' + key + ":"+ value;
+    }
+    results += "}"
+    return results;
+  }
+
+  let result = frequency(...strings);
+  alert(result);
+
+  </script>
+ </body>
+</html>

@@ -83,7 +83,7 @@ CHALLENGE: Include youtube video embed
       </ul>
     </nav>
   </center>
-    <center>
+    <center id = "beginning">
         <h1> Tiffany's Favorite Songs </h1>
         <div>
           <div>
@@ -92,9 +92,9 @@ CHALLENGE: Include youtube video embed
             <h3 id = "song1Album"> Album Name </h3>
             <h2 id = "song1Artist"> Artist Name </h2>
             <h3 id = "song1Date"> Release Date </h3>
-            <h4 id = ""></h4>
           </div>
           <iframe id = "song1Youtube" width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <p id = "song1Duration"> Song Duration </p>
         </div>
         <br>
         <p style = "clear:left;">
@@ -107,6 +107,7 @@ CHALLENGE: Include youtube video embed
             <h3 id = "song2Date"> Release Date </h3>
           </div>
           <iframe id = "song2Youtube" width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <p id = "song2Duration"> Song Duration </p>
         </div>
         <br>
         <p style = "clear:left;">
@@ -119,6 +120,7 @@ CHALLENGE: Include youtube video embed
             <h3 id = "song3Date"> Release Date </h3>
           </div>
           <iframe id = "song3Youtube" width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <p id = "song3Duration"> Song Duration </p>
         </div>
         <br>
         <p style = "clear:left;">
@@ -131,6 +133,7 @@ CHALLENGE: Include youtube video embed
             <h3 id = "song4Date"> Release Date </h3>
           </div>
           <iframe id = "song4Youtube" width="560" height="315" src="https://www.youtube.com/embed/1rfSHisyHdc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <p id = "song4Duration"> Song Duration </p>
         </div>
         <br>
         <p style = "clear:left;">
@@ -143,6 +146,7 @@ CHALLENGE: Include youtube video embed
             <h3 id = "song5Date"> Release Date </h3>
           </div>
           <iframe id = "song5Youtube" width="560" height="315" src="https://www.youtube.com/embed/1rfSHisyHdc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <p id = "song5Duration"> Song Duration </p>
         </div>
         <p> This project was created for a coding sprint for CSC 220 - Spring 2018 by Tiffany Xiao.</p>
     </center>
@@ -150,31 +154,23 @@ CHALLENGE: Include youtube video embed
 
   "use strict"; // enable modern JS features
 
-  function Song(name, artist, album, releaseDate, coverArt, youtube){
+  function Song(name, artist, album, releaseDate, coverArt, youtube, duration){
     this.name = name;
     this.artist = artist;
     this.album = album;
     this.releaseDate = releaseDate;
     this.coverArt = coverArt;
     this.youtube = youtube;
+    this.duration = duration;
   }
 
-  let castle = new Song("Castle","Halsey","Badlands", "2015","https://images.genius.com/092840365d93c9685b8309a50e46793f.1000x1000x1.jpg","https://www.youtube.com/embed/1rfSHisyHdc");
-  let greenLight = new Song("Green Light","Lorde","Melodrama", "2017","https://media.wmagazine.com/photos/58b896134d6f3875353c41d5/master/pass/17077435_215844885557762_2076647443876806656_n.jpg", "https://www.youtube.com/embed/GMspRjUvfAE");
-  let saveMe = new Song("Save Me","BTS","Youth", "2016","https://t2.genius.com/unsafe/300x0/https%3A%2F%2Fimages.genius.com%2F97a51159958d0ed00ae1b537354d0312.614x614x1.jpg", "https://www.youtube.com/embed/CfxD2D-V46E");
-  let kissesBack = new Song("Kisses Back","Matthew Koma","Single", "2016","https://images.shazam.com/coverart/t334070253-b1170704985_s400.jpg", "https://www.youtube.com/embed/wyA0MjMU2Hw");
-  let beGood = new Song("I'll Be Good","Jaymes Young","Feel Something", "2017","https://images.genius.com/c2665c72238ddcf8e49faae03f3d49cf.1000x1000x1.jpg","https://www.youtube.com/embed/scd-uNNxgrU");
+  let castle = new Song("Castle","Halsey","Badlands", "2015","https://images.genius.com/092840365d93c9685b8309a50e46793f.1000x1000x1.jpg","https://www.youtube.com/embed/1rfSHisyHdc", "4 min 37 seconds");
+  let greenLight = new Song("Green Light","Lorde","Melodrama", "2017","https://media.wmagazine.com/photos/58b896134d6f3875353c41d5/master/pass/17077435_215844885557762_2076647443876806656_n.jpg", "https://www.youtube.com/embed/GMspRjUvfAE","4 min 8 seconds");
+  let saveMe = new Song("Save Me","BTS","Youth", "2016","https://t2.genius.com/unsafe/300x0/https%3A%2F%2Fimages.genius.com%2F97a51159958d0ed00ae1b537354d0312.614x614x1.jpg", "https://www.youtube.com/embed/CfxD2D-V46E","3 min 18 seconds");
+  let kissesBack = new Song("Kisses Back","Matthew Koma","Single", "2016","https://images.shazam.com/coverart/t334070253-b1170704985_s400.jpg", "https://www.youtube.com/embed/wyA0MjMU2Hw","3 min 48 seconds");
+  let beGood = new Song("I'll Be Good","Jaymes Young","Feel Something", "2017","https://images.genius.com/c2665c72238ddcf8e49faae03f3d49cf.1000x1000x1.jpg","https://www.youtube.com/embed/scd-uNNxgrU","4 min 9 seconds");
 
   let songs = [castle, greenLight, saveMe, kissesBack, beGood];
-
-  // alert(songs)
-  // let i = 1;
-  // for (let song in songs){
-  //   alert(song);
-  //   let elementName = "song"+i.toString();
-  //   document.getElementById(elementName).innerHTML = "Song: " + song.name ;
-  //   i += 1;
-  // }
 
   for(let i = 0; i <= 4; i++){
     let elementName = "song"+(i+1).toString();
@@ -184,6 +180,7 @@ CHALLENGE: Include youtube video embed
     document.getElementById(elementName+"Artist").innerHTML =  songs[i].artist;
     document.getElementById(elementName+"Date").innerHTML =  songs[i].releaseDate;
     document.getElementById(elementName+"Youtube").src = songs[i].youtube;
+    document.getElementById(elementName+"Duration").innerHTML = "Song Duration: "+songs[i].duration;
   }
 
   </script>
