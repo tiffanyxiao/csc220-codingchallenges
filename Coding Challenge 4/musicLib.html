@@ -11,67 +11,229 @@ album
 release date
 cover art (a URL pointing to an image)
 and use this to generate a web page displaying your 3+ favorite albums.
+
+Todo:
+-replace nav bar (for Github)
+-remove style (for GitHub)
 --->
 
 <!DOCTYPE html>
 <html>
-<title>CSC220 - TIFFANY XIAO</title>
-<head>
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-  <center>
-    <nav id = "main_nav">
-      <ul>
-        <li>
-          <a href ="index.html"> Home </a>
-        </li>
-        <li>
-          <a href =""> Python </a>
-          <ul>
-            <li><a href = ""> Challenges </a>
-            </li>
-            <li><a href = ""> Sprints </a></li>
-          </ul>
-        </li>
-        <li>
-          <a href ="Webpages/Javascript.html"> Javascript </a>
-          <ul>
-            <li><a href = ""> Challenges </a>
-            </li>
-            <li><a href = ""> Sprints </a>
-            <ul>
-              <li><a href = "codingSprint8.html"> Sprint #1 </a></li>
-              <li><a href = "codingSprint9.html"> Sprint #2 </a></li>
-            </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href =""> Java </a>
-          <ul>
-            <li><a href = ""> Challenges </a>
-            </li>
-            <li><a href = ""> Sprints </a></li>
-          </ul>
-        </li>
-        <li>
-          <a href =""> Julia </a>
-          <ul>
-            <li><a href = ""> Challenges </a>
-            </li>
-            <li><a href = ""> Sprints </a></li>
-          </ul>
-        </li>
-        <li>
-          <a href =""> Contact </a>
-        </li>
-      </ul>
-    </nav>
-  </center>
+  <style>
+    * {
+    	margin: 0;
+    	padding: 0;
+    }
+
+    body {
+    	font: 300 15px/1.5 "Helvetica Neue", helvetica, arial, sans-serif;
+      color:#fff;
+    	background: #2E2A40;
+    	margin: 15px;
+    }
+
+    article {
+    	width: 600px;
+    	margin: 0 auto;
+    	background: #000;
+    	color: #fff;
+    	border-radius: 5px;
+    	box-shadow: 0 0 15px 2px #666;
+    }
+
+    section {
+    	clear: left;
+    }
+
+    h1 {
+    	font-size: 45px;
+    	font-weight: 100;
+    	letter-spacing: 15px;
+    	text-align: center;
+    }
+
+    h1, #main_content, #dog_link {
+    	padding: 15px;
+    }
+
+    h3 {
+      font-size: 25px;
+      font-weight: 200;
+    }
+
+    h2{
+      font-size: 35px;
+    }
+
+    p {
+    	margin: 15px 0;
+    }
+
+    a {
+    	color: #06c;
+    }
+    div{
+      float: center;
+      width: 100%;
+      height: 40%;
+    }
+    .art img{
+      float: left;
+      width: 35%;
+    }
+    .videoWrapper {
+    	position: relative;
+    	padding-bottom: 33%; /* 16:9 */
+    	padding-top: 25px;
+    	height: 0;
+    }
+    .videoWrapper iframe {
+    	position: absolute;
+    	top: 0;
+    	right: 0;
+    	width: 63%;
+    	height: 100%;
+    }
+  </style>
+  <title>CSC220 - TIFFANY XIAO</title>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <center>
+        <h1> Tiffany's Favorite Albums </h1>
+        <!--- Album #1 -->
+        <div>
+          <h3 id = "album1Name"> Album Name </h3>
+          <h2 id = "album1Artist"> Artist Name </h2>
+          <h3 id = "album1Date"> Release Date </h3>
+          <div class = "art">
+            <img id = "album1Art" src="" width = "100%" height = "100%">
+          </div>
+          <div class="videoWrapper">
+            <iframe id = "album1Youtube" src="" width = "560" height = "349" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+          <p style = "clear:left;">
+          <h4> Songs: </h4>
+          <div id = "album1Songs">
+
+          </div>
+        </div>
+        <br>
+        <!--- Album #2 -->
+        <div>
+          <h3 id = "album2Name"> Album Name </h3>
+          <h2 id = "album2Artist"> Artist Name </h2>
+          <h3 id = "album2Date"> Release Date </h3>
+          <div class = "art">
+            <img id = "album2Art" src="" width = "100%" height = "100%">
+          </div>
+          <div class="videoWrapper">
+            <iframe id = "album2Youtube" src="" width = "560" height = "349" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+          <p style = "clear:left;">
+          <h4> Songs: </h4>
+          <div id = "album2Songs">
+
+          </div>
+        </div>
+        <br>
+        <!--- Album #3 -->
+        <div>
+          <h3 id = "album3Name"> Album Name </h3>
+          <h2 id = "album3Artist"> Artist Name </h2>
+          <h3 id = "album3Date"> Release Date </h3>
+          <div class = "art">
+            <img id = "album3Art" src="" width = "100%" height = "100%">
+          </div>
+          <div class="videoWrapper">
+            <iframe id = "album3Youtube" src="" width = "560" height = "349" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+          <p style = "clear:left;">
+          <h4> Songs: </h4>
+          <div id = "album3Songs">
+
+          </div>
+        </div>
+        <br>
+        <p> This project was created for a coding sprint for CSC 220 - Spring 2018 by Tiffany Xiao.</p>
+    </center>
   <script>
 
   "use strict"; // enable modern JS features
+
+  function Album(artist, albumName, releaseDate, coverArt){
+    this.artist = artist;
+    this.albumName = albumName;
+    this.releaseDate = releaseDate;
+    this.coverArt = coverArt;
+    this.songs = [];
+
+    this.addSong = function addSong(song){
+      if (!(song in this.songs)){
+        this.songs.push(song);
+      }
+    }
+
+  }
+
+  function Song(name, duration, youtube, album){
+    this.name = name;
+    this.duration = duration;
+    this.youtube = youtube;
+    this.artist = album.artist;
+    this.album = album.albumName;
+    this.releaseDate = album.releaseDate;
+    this.coverArt = album.coverArt;
+    album.addSong(this);
+  }
+
+  // create first album and its 5 songs (id = Imagine Dragons)
+  let idAlbum = new Album('Imagine Dragons', 'Night Visions', '2014', 'http://is3-ssl.mzstatic.com/image/thumb/Music2/v4/ac/7d/de/ac7dded0-b96c-b4db-d722-f35cef03dcfb/UMG_cvrart_00602537293308_01_RGB72_1500x1500_12UMGIM46900.jpg/1200x630bb.jpg');
+  let idSong1 = new Song('Radioactive', '4 minutes 22 seconds', 'https://youtube.com/embed/ktvTqknDobU', idAlbum);
+  let idSong2 = new Song('It\'s Time', '4 minutes 7 seconds', 'https://www.youtube.com/embed/sENM2wA_FTg', idAlbum);
+  let idSong3 = new Song('Hear Me', '3 minutes 56 seconds', 'https://www.youtube.com/embed/1Yr683VLxes', idAlbum);
+  let idSong4 = new Song('Demons', '3 minutes 57 seconds', 'https://www.youtube.com/embed/mWRsgZuwf_8', idAlbum);
+  let idSong5 = new Song('On Top of the World', '4 minutes 2 seconds', 'https://www.youtube.com/embed/w5tWYmIOWGk', idAlbum);
+
+  // create second album and its 5 songs (or = One Republic)
+  let orAlbum = new Album('OneRepublic', 'Native', '2014', 'https://images-na.ssl-images-amazon.com/images/I/51Mzi-WPCoL.jpg');
+  let orSong1 = new Song('Feel Again', '3 minutes 18 seconds', 'https://www.youtube.com/embed/2tMKO_9SD1Y', orAlbum);
+  let orSong2 = new Song('If I Lose Myself', '4 minutes 21 seconds', 'https://www.youtube.com/embed/TGx0rApSk6w', orAlbum);
+  let orSong3 = new Song('Counting Stars', '4 minutes 44 seconds', 'https://www.youtube.com/embed/hT_nvWreIhg', orAlbum);
+  let orSong4 = new Song('I Lived', '5 minutes 39 seconds', 'https://www.youtube.com/embed/z0rxydSolwU', orAlbum);
+  let orSong5 = new Song('Love Runs Out', '3 minutes 49 seconds', 'https://www.youtube.com/embed/0OWj0CiM8WU', orAlbum);
+
+  // create third album and its 5 songs (fb = Fall Out Boy)
+  let fbAlbum = new Album('Fall Out Boy', 'American Beauty/American Psycho', '2015', 'https://images-na.ssl-images-amazon.com/images/I/81Rx4wTpbNL._SL1400_.jpg');
+  let fbSong1 = new Song('Centuries', '4 minutes 32 seconds', 'https://www.youtube.com/embed/LBr7kECsjcQ', fbAlbum);
+  let fbSong2 = new Song('Uma Thurman', '4 minutes 9 seconds', 'https://www.youtube.com/embed/2VTxYQL2SbA', fbAlbum);
+  let fbSong3 = new Song('Immortals', '3 minutes 31 seconds', 'https://www.youtube.com/embed/l9PxOanFjxQ', fbAlbum);
+  let fbSong4 = new Song('Irresistible', '5 minutes 39 seconds', 'https://www.youtube.com/embed/2Lb2BiUC898', fbAlbum);
+  let fbSong5 = new Song('Novocaine', '3 minutes 45 seconds', 'https://www.youtube.com/embed/Juxr9PIc2pE', fbAlbum);
+
+  let albums = [idAlbum, orAlbum, fbAlbum];
+
+  // show on page
+  for(let i = 0; i < albums.length; i++){
+    let elementName = "album"+(i+1).toString();
+    document.getElementById(elementName+"Art").src =  albums[i].coverArt;
+    document.getElementById(elementName+"Name").innerHTML =  albums[i].albumName;
+    document.getElementById(elementName+"Artist").innerHTML =  albums[i].artist;
+    document.getElementById(elementName+"Date").innerHTML =  albums[i].releaseDate;
+    document.getElementById(elementName+"Youtube").src = albums[i].songs[0].youtube;
+    // display all songs
+    let div = document.createElement('div');
+    // create string of the html code to add to the html document
+    let stringCode = '';
+    for(let j =0; j<albums[i].songs.length;j++){
+      stringCode += '<p>'+albums[i].songs[j].name+' - duration: '+albums[i].songs[j].duration+' (link: <a href ='+albums[i].songs[j].youtube+'>'+albums[i].songs[j].youtube+'</a>'+')'+'</p>';
+    }
+    div.className = 'row';
+    div.innerHTML = stringCode;
+    document.getElementById(elementName+"Songs").appendChild(div);
+
+  }
 
   </script>
  </body>
