@@ -1,10 +1,11 @@
-<!---
+<!--
 Author: Tiffany Xiao
 Date: February 22, 2018
 Title: Music Library Visualizer
 
 Objective of challenge:
-Extend your "playing favorites" sprint to remove duplicated information by implementing an Album object (which will have Songs as children), which will include the following information:
+Extend your "playing favorites" sprint to remove duplicated information by implementing an
+Album object (which will have Songs as children), which will include the following information:
 
 artist
 album
@@ -12,10 +13,21 @@ release date
 cover art (a URL pointing to an image)
 and use this to generate a web page displaying your 3+ favorite albums.
 
+Author's notes:
+The html code contains 3 placeholder albums, each of which will be replaced by the appropriate
+info by the Javascript.
+
+The Javascript consists of two objects (the parent object Album and child object Song). After
+create 3 albums with 5 songs each, I utilized for loops to change the html elements for each
+album. I also utilized a for loop to add the html code for the songs (in case we create an
+album with more than 5 songs - I wanted to be able to add all songs instead of hard coding
+5 songs).
+
 Todo:
 -replace nav bar (for Github)
 -remove style (for GitHub)
---->
+-update navbar
+-->
 
 <!DOCTYPE html>
 <html>
@@ -97,62 +109,67 @@ Todo:
   </style>
   <title>CSC220 - TIFFANY XIAO</title>
   <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <center>
         <h1> Tiffany's Favorite Albums </h1>
-        <!--- Album #1 -->
+        <!-- Album #1 -->
         <div>
+          <!-- album info -->
           <h3 id = "album1Name"> Album Name </h3>
           <h2 id = "album1Artist"> Artist Name </h2>
           <h3 id = "album1Date"> Release Date </h3>
+          <!-- album picture -->
           <div class = "art">
             <img id = "album1Art" src="" width = "100%" height = "100%">
           </div>
+          <!-- album video -->
           <div class="videoWrapper">
             <iframe id = "album1Youtube" src="" width = "560" height = "349" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-          <p style = "clear:left;">
+          <!-- album songs -->
           <h4> Songs: </h4>
           <div id = "album1Songs">
-
           </div>
         </div>
         <br>
-        <!--- Album #2 -->
+        <!-- Album #2 -->
         <div>
+          <!-- album info -->
           <h3 id = "album2Name"> Album Name </h3>
           <h2 id = "album2Artist"> Artist Name </h2>
           <h3 id = "album2Date"> Release Date </h3>
+          <!-- album picture -->
           <div class = "art">
             <img id = "album2Art" src="" width = "100%" height = "100%">
           </div>
+          <!-- album video -->
           <div class="videoWrapper">
             <iframe id = "album2Youtube" src="" width = "560" height = "349" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-          <p style = "clear:left;">
+          <!-- album songs -->
           <h4> Songs: </h4>
           <div id = "album2Songs">
-
           </div>
         </div>
         <br>
-        <!--- Album #3 -->
+        <!-- Album #3 -->
         <div>
+          <!-- album info -->
           <h3 id = "album3Name"> Album Name </h3>
           <h2 id = "album3Artist"> Artist Name </h2>
           <h3 id = "album3Date"> Release Date </h3>
+          <!-- album picture -->
           <div class = "art">
             <img id = "album3Art" src="" width = "100%" height = "100%">
           </div>
+          <!-- album video -->
           <div class="videoWrapper">
             <iframe id = "album3Youtube" src="" width = "560" height = "349" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-          <p style = "clear:left;">
+          <!-- album songs -->
           <h4> Songs: </h4>
           <div id = "album3Songs">
-
           </div>
         </div>
         <br>
@@ -162,13 +179,27 @@ Todo:
 
   "use strict"; // enable modern JS features
 
+  /**
+   * Album object to keep track of child Songs' artist, album name and release date
+   * with addSong() function to add songs to the album.
+   * @param {string} artist Name of artist of the album.
+   * @param {string} albumName Name of the album.
+   * @param {string} releaseDate Release date of the album.
+   * @param {string} coverArt Link to cover art of the album.
+   */
   function Album(artist, albumName, releaseDate, coverArt){
     this.artist = artist;
     this.albumName = albumName;
     this.releaseDate = releaseDate;
     this.coverArt = coverArt;
+    // initialize the album's songs list (to keep track of its children)
     this.songs = [];
 
+    /**
+     * Function to add song to the album's songs. The function checks if
+     * the song already exists in songs before adding it to songs.
+     * @param {Song} song Name of artist of the album.
+     */
     this.addSong = function addSong(song){
       if (!(song in this.songs)){
         this.songs.push(song);
@@ -177,18 +208,28 @@ Todo:
 
   }
 
+  /**
+   * Song object that holds a song's name, duration and youtube link, and its
+   * album parent.
+   * @param {string} name Name of the song.
+   * @param {string} duration Duration of the youtube video for the song.
+   * @param {string} youtube Link to the song's youtube video.
+   * @param {string} album Parent album of the song.
+   */
   function Song(name, duration, youtube, album){
     this.name = name;
     this.duration = duration;
     this.youtube = youtube;
+    // also set properties of the Song according to parent's properties
     this.artist = album.artist;
     this.album = album.albumName;
     this.releaseDate = album.releaseDate;
     this.coverArt = album.coverArt;
+    // add the song to it's album parent's songs list
     album.addSong(this);
   }
 
-  // create first album and its 5 songs (id = Imagine Dragons)
+  // intialize first album and its 5 songs (id = Imagine Dragons)
   let idAlbum = new Album('Imagine Dragons', 'Night Visions', '2014', 'http://is3-ssl.mzstatic.com/image/thumb/Music2/v4/ac/7d/de/ac7dded0-b96c-b4db-d722-f35cef03dcfb/UMG_cvrart_00602537293308_01_RGB72_1500x1500_12UMGIM46900.jpg/1200x630bb.jpg');
   let idSong1 = new Song('Radioactive', '4 minutes 22 seconds', 'https://youtube.com/embed/ktvTqknDobU', idAlbum);
   let idSong2 = new Song('It\'s Time', '4 minutes 7 seconds', 'https://www.youtube.com/embed/sENM2wA_FTg', idAlbum);
@@ -196,7 +237,7 @@ Todo:
   let idSong4 = new Song('Demons', '3 minutes 57 seconds', 'https://www.youtube.com/embed/mWRsgZuwf_8', idAlbum);
   let idSong5 = new Song('On Top of the World', '4 minutes 2 seconds', 'https://www.youtube.com/embed/w5tWYmIOWGk', idAlbum);
 
-  // create second album and its 5 songs (or = One Republic)
+  // intialize second album and its 5 songs (or = One Republic)
   let orAlbum = new Album('OneRepublic', 'Native', '2014', 'https://images-na.ssl-images-amazon.com/images/I/51Mzi-WPCoL.jpg');
   let orSong1 = new Song('Feel Again', '3 minutes 18 seconds', 'https://www.youtube.com/embed/2tMKO_9SD1Y', orAlbum);
   let orSong2 = new Song('If I Lose Myself', '4 minutes 21 seconds', 'https://www.youtube.com/embed/TGx0rApSk6w', orAlbum);
@@ -204,7 +245,7 @@ Todo:
   let orSong4 = new Song('I Lived', '5 minutes 39 seconds', 'https://www.youtube.com/embed/z0rxydSolwU', orAlbum);
   let orSong5 = new Song('Love Runs Out', '3 minutes 49 seconds', 'https://www.youtube.com/embed/0OWj0CiM8WU', orAlbum);
 
-  // create third album and its 5 songs (fb = Fall Out Boy)
+  // intialize third album and its 5 songs (fb = Fall Out Boy)
   let fbAlbum = new Album('Fall Out Boy', 'American Beauty/American Psycho', '2015', 'https://images-na.ssl-images-amazon.com/images/I/81Rx4wTpbNL._SL1400_.jpg');
   let fbSong1 = new Song('Centuries', '4 minutes 32 seconds', 'https://www.youtube.com/embed/LBr7kECsjcQ', fbAlbum);
   let fbSong2 = new Song('Uma Thurman', '4 minutes 9 seconds', 'https://www.youtube.com/embed/2VTxYQL2SbA', fbAlbum);
@@ -212,9 +253,14 @@ Todo:
   let fbSong4 = new Song('Irresistible', '5 minutes 39 seconds', 'https://www.youtube.com/embed/2Lb2BiUC898', fbAlbum);
   let fbSong5 = new Song('Novocaine', '3 minutes 45 seconds', 'https://www.youtube.com/embed/Juxr9PIc2pE', fbAlbum);
 
+
+  // idAlbum.albumName = "Test";
+  // alert(idSong1.album);
+
+  // create an array containing all of the albums
   let albums = [idAlbum, orAlbum, fbAlbum];
 
-  // show on page
+  // change HTML code to display album info
   for(let i = 0; i < albums.length; i++){
     let elementName = "album"+(i+1).toString();
     document.getElementById(elementName+"Art").src =  albums[i].coverArt;
@@ -222,9 +268,9 @@ Todo:
     document.getElementById(elementName+"Artist").innerHTML =  albums[i].artist;
     document.getElementById(elementName+"Date").innerHTML =  albums[i].releaseDate;
     document.getElementById(elementName+"Youtube").src = albums[i].songs[0].youtube;
-    // display all songs
+    // add div to HTML that will display all songs
     let div = document.createElement('div');
-    // create string of the html code to add to the html document
+    // loop through each song and append it to a string variable that will be used later on to add the div information to the HTML
     let stringCode = '';
     for(let j =0; j<albums[i].songs.length;j++){
       stringCode += '<p>'+albums[i].songs[j].name+' - duration: '+albums[i].songs[j].duration+' (link: <a href ='+albums[i].songs[j].youtube+'>'+albums[i].songs[j].youtube+'</a>'+')'+'</p>';
@@ -232,7 +278,6 @@ Todo:
     div.className = 'row';
     div.innerHTML = stringCode;
     document.getElementById(elementName+"Songs").appendChild(div);
-
   }
 
   </script>
