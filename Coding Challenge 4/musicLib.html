@@ -1,5 +1,6 @@
 <!--
 Author: Tiffany Xiao
+Partner: Karen Santamaria
 Date: February 22, 2018
 Title: Music Library Visualizer
 
@@ -22,11 +23,6 @@ create 3 albums with 5 songs each, I utilized for loops to change the html eleme
 album. I also utilized a for loop to add the html code for the songs (in case we create an
 album with more than 5 songs - I wanted to be able to add all songs instead of hard coding
 5 songs).
-
-Todo:
--replace nav bar (for Github)
--remove style (for GitHub)
--update navbar
 -->
 
 <!DOCTYPE html>
@@ -194,18 +190,17 @@ Todo:
     this.coverArt = coverArt;
     // initialize the album's songs list (to keep track of its children)
     this.songs = [];
+  }
 
-    /**
-     * Function to add song to the album's songs. The function checks if
-     * the song already exists in songs before adding it to songs.
-     * @param {Song} song Name of artist of the album.
-     */
-    this.addSong = function addSong(song){
-      if (!(song in this.songs)){
-        this.songs.push(song);
-      }
+  /**
+   * Function to add song to the album's songs. The function checks if
+   * the song already exists in songs before adding it to songs.
+   * @param {Song} song Name of artist of the album.
+   */
+  Album.prototype.addSong = function addSong(song){
+    if (!(song in this.songs)){
+      this.songs.push(song);
     }
-
   }
 
   /**
@@ -252,10 +247,6 @@ Todo:
 
   // create an array containing all of the albums
   let albums = [idAlbum, orAlbum, fbAlbum];
-
-  idAlbum.albumName = "Potato";
-  alert(idSong1.albumName);
-  alert(fbSong1.albumName);
 
   // change HTML code to display album info
   for(let i = 0; i < albums.length; i++){
