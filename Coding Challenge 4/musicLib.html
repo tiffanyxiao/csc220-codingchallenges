@@ -216,49 +216,65 @@ Todo:
    * @param {string} youtube Link to the song's youtube video.
    * @param {string} album Parent album of the song.
    */
-  function Song(name, duration, youtube, album){
+  function Song( name, duration, youtube){
     this.name = name;
     this.duration = duration;
     this.youtube = youtube;
     // also set properties of the Song according to parent's properties
-    this.artist = album.artist;
-    this.album = album.albumName;
-    this.releaseDate = album.releaseDate;
-    this.coverArt = album.coverArt;
-    // add the song to it's album parent's songs list
-    album.addSong(this);
+    // this.artist = album.artist;
+    // this.albumName = album.albumName;
+    // this.releaseDate = album.releaseDate;
+    // this.coverArt = album.coverArt;
+    // // add the song to it's album parent's songs list
+    // Album.addSong(this);
+    Object.getPrototypeOf(Object.getPrototypeOf(this)).addSong.call(this,this);
   }
 
-  // intialize first album and its 5 songs (id = Imagine Dragons)
-  let idAlbum = new Album('Imagine Dragons', 'Night Visions', '2014', 'http://is3-ssl.mzstatic.com/image/thumb/Music2/v4/ac/7d/de/ac7dded0-b96c-b4db-d722-f35cef03dcfb/UMG_cvrart_00602537293308_01_RGB72_1500x1500_12UMGIM46900.jpg/1200x630bb.jpg');
+  let idAlbum = Object.create(new Album('Imagine Dragons', 'Night Visions', '2014', 'http://is3-ssl.mzstatic.com/image/thumb/Music2/v4/ac/7d/de/ac7dded0-b96c-b4db-d722-f35cef03dcfb/UMG_cvrart_00602537293308_01_RGB72_1500x1500_12UMGIM46900.jpg/1200x630bb.jpg'));
+
+  Song.prototype = idAlbum;
+
   let idSong1 = new Song('Radioactive', '4 minutes 22 seconds', 'https://youtube.com/embed/ktvTqknDobU', idAlbum);
-  let idSong2 = new Song('It\'s Time', '4 minutes 7 seconds', 'https://www.youtube.com/embed/sENM2wA_FTg', idAlbum);
-  let idSong3 = new Song('Hear Me', '3 minutes 56 seconds', 'https://www.youtube.com/embed/1Yr683VLxes', idAlbum);
-  let idSong4 = new Song('Demons', '3 minutes 57 seconds', 'https://www.youtube.com/embed/mWRsgZuwf_8', idAlbum);
-  let idSong5 = new Song('On Top of the World', '4 minutes 2 seconds', 'https://www.youtube.com/embed/w5tWYmIOWGk', idAlbum);
 
-  // intialize second album and its 5 songs (or = One Republic)
-  let orAlbum = new Album('OneRepublic', 'Native', '2014', 'https://images-na.ssl-images-amazon.com/images/I/51Mzi-WPCoL.jpg');
-  let orSong1 = new Song('Feel Again', '3 minutes 18 seconds', 'https://www.youtube.com/embed/2tMKO_9SD1Y', orAlbum);
-  let orSong2 = new Song('If I Lose Myself', '4 minutes 21 seconds', 'https://www.youtube.com/embed/TGx0rApSk6w', orAlbum);
-  let orSong3 = new Song('Counting Stars', '4 minutes 44 seconds', 'https://www.youtube.com/embed/hT_nvWreIhg', orAlbum);
-  let orSong4 = new Song('I Lived', '5 minutes 39 seconds', 'https://www.youtube.com/embed/z0rxydSolwU', orAlbum);
-  let orSong5 = new Song('Love Runs Out', '3 minutes 49 seconds', 'https://www.youtube.com/embed/0OWj0CiM8WU', orAlbum);
+  let orAlbum = Object.create(new Album('OneRepublic', 'Native', '2014', 'https://images-na.ssl-images-amazon.com/images/I/51Mzi-WPCoL.jpg'));
 
-  // intialize third album and its 5 songs (fb = Fall Out Boy)
-  let fbAlbum = new Album('Fall Out Boy', 'American Beauty/American Psycho', '2015', 'https://images-na.ssl-images-amazon.com/images/I/81Rx4wTpbNL._SL1400_.jpg');
-  let fbSong1 = new Song('Centuries', '4 minutes 32 seconds', 'https://www.youtube.com/embed/LBr7kECsjcQ', fbAlbum);
-  let fbSong2 = new Song('Uma Thurman', '4 minutes 9 seconds', 'https://www.youtube.com/embed/2VTxYQL2SbA', fbAlbum);
-  let fbSong3 = new Song('Immortals', '3 minutes 31 seconds', 'https://www.youtube.com/embed/l9PxOanFjxQ', fbAlbum);
-  let fbSong4 = new Song('Irresistible', '5 minutes 39 seconds', 'https://www.youtube.com/embed/2Lb2BiUC898', fbAlbum);
-  let fbSong5 = new Song('Novocaine', '3 minutes 45 seconds', 'https://www.youtube.com/embed/Juxr9PIc2pE', fbAlbum);
+  Song.prototype = orAlbum;
+
+  idAlbum.albumName = "Test";
+  alert(idSong1.albumName);
+
+  // // intialize first album and its 5 songs (id = Imagine Dragons)
+  // let idAlbum = new Album('Imagine Dragons', 'Night Visions', '2014', 'http://is3-ssl.mzstatic.com/image/thumb/Music2/v4/ac/7d/de/ac7dded0-b96c-b4db-d722-f35cef03dcfb/UMG_cvrart_00602537293308_01_RGB72_1500x1500_12UMGIM46900.jpg/1200x630bb.jpg');
+  // let idSong1 = new Song('Radioactive', '4 minutes 22 seconds', 'https://youtube.com/embed/ktvTqknDobU', idAlbum);
+  // let idSong2 = new Song('It\'s Time', '4 minutes 7 seconds', 'https://www.youtube.com/embed/sENM2wA_FTg', idAlbum);
+  // let idSong3 = new Song('Hear Me', '3 minutes 56 seconds', 'https://www.youtube.com/embed/1Yr683VLxes', idAlbum);
+  // let idSong4 = new Song('Demons', '3 minutes 57 seconds', 'https://www.youtube.com/embed/mWRsgZuwf_8', idAlbum);
+  // let idSong5 = new Song('On Top of the World', '4 minutes 2 seconds', 'https://www.youtube.com/embed/w5tWYmIOWGk', idAlbum);
+  //
+  // // intialize second album and its 5 songs (or = One Republic)
+  // let orAlbum = new Album('OneRepublic', 'Native', '2014', 'https://images-na.ssl-images-amazon.com/images/I/51Mzi-WPCoL.jpg');
+  // let orSong1 = new Song('Feel Again', '3 minutes 18 seconds', 'https://www.youtube.com/embed/2tMKO_9SD1Y', orAlbum);
+  // let orSong2 = new Song('If I Lose Myself', '4 minutes 21 seconds', 'https://www.youtube.com/embed/TGx0rApSk6w', orAlbum);
+  // let orSong3 = new Song('Counting Stars', '4 minutes 44 seconds', 'https://www.youtube.com/embed/hT_nvWreIhg', orAlbum);
+  // let orSong4 = new Song('I Lived', '5 minutes 39 seconds', 'https://www.youtube.com/embed/z0rxydSolwU', orAlbum);
+  // let orSong5 = new Song('Love Runs Out', '3 minutes 49 seconds', 'https://www.youtube.com/embed/0OWj0CiM8WU', orAlbum);
+  //
+  // // intialize third album and its 5 songs (fb = Fall Out Boy)
+  // let fbAlbum = new Album('Fall Out Boy', 'American Beauty/American Psycho', '2015', 'https://images-na.ssl-images-amazon.com/images/I/81Rx4wTpbNL._SL1400_.jpg');
+  // let fbSong1 = new Song('Centuries', '4 minutes 32 seconds', 'https://www.youtube.com/embed/LBr7kECsjcQ', fbAlbum);
+  // let fbSong2 = new Song('Uma Thurman', '4 minutes 9 seconds', 'https://www.youtube.com/embed/2VTxYQL2SbA', fbAlbum);
+  // let fbSong3 = new Song('Immortals', '3 minutes 31 seconds', 'https://www.youtube.com/embed/l9PxOanFjxQ', fbAlbum);
+  // let fbSong4 = new Song('Irresistible', '5 minutes 39 seconds', 'https://www.youtube.com/embed/2Lb2BiUC898', fbAlbum);
+  // let fbSong5 = new Song('Novocaine', '3 minutes 45 seconds', 'https://www.youtube.com/embed/Juxr9PIc2pE', fbAlbum);
 
 
   // idAlbum.albumName = "Test";
-  // alert(idSong1.album);
+  // alert(idAlbum.albumName);
 
   // create an array containing all of the albums
-  let albums = [idAlbum, orAlbum, fbAlbum];
+  // let albums = [idAlbum, orAlbum, fbAlbum];
+
+  let albums = [idAlbum];
 
   // change HTML code to display album info
   for(let i = 0; i < albums.length; i++){
