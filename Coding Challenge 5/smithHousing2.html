@@ -201,6 +201,20 @@ the word house in the name (Chase House, Ziskind house, etc, but NOT "Friedman a
           font-size: 15px;
           transform: translate(-50%, -50%);
         }
+        input[type="checkbox"] {
+          display: inline-block;
+          width: 15px;
+          vertical-align: top;
+        }
+        legend{
+          font-size: 12px;
+        }
+        input[type="checkbox"] + label {
+          display: inline-block;
+          width: 100px;
+          word-break: break-all;
+          font-size: 13px;
+        }
     </style>
   </head>
   <body>
@@ -217,16 +231,36 @@ the word house in the name (Chase House, Ziskind house, etc, but NOT "Friedman a
           </div>
           <!--- Area of Campus-->
           <div>
-            <label for="area">Choose an Area of Campus:</label>
-            <select id="area">
-              <option selected>All</option>
-              <option>Green Street</option>
-              <option>Center Campus</option>
-              <option>East Quad</option>
-              <option>West Quad</option>
-              <option>Upper Elm Street</option>
-              <option>Lower Elm Street</option>
-            </select>
+            <fieldset>
+              <legend>Choose an Area of Campus</legend>
+              <div>
+                <input type="checkbox" name="area" value="all" id = "area_all" checked="checked">
+                <label for="area_all">All</label>
+              </div>
+              <div>
+                <input type="checkbox" name="area" value="green street" id = "area_green_street">
+                <label for="area_green_street">Green Street</label>
+              </div>
+              <div>
+                <input type="checkbox" name="area" value="center campus" id = "area_center_campus">
+                <label for="area_center_campus">Center Campus</label>
+              </div>
+              <div>
+                <input type="checkbox" name="area" value="east quad" id = "area_east_quad">
+                <label for="area_east_quad">East Quad</label>
+              </div>
+              <div>
+                <input type="checkbox" name="area" value="west quad" id = "area_west_quad">
+                <label for="area_west_quad">West Quad</label>
+              </div>
+              <div>
+                <input type="checkbox" name="area" value="upper elm street" id = "area_upper_elm_street">
+                <label for="area_upper_elm_street">Upper Elm Street</label>
+              </div>
+              <div>
+                <input type="checkbox" name="area" value="lower elm street" id = "area_lower_elm_street">
+                <label for="area_lower_elm_street">Lower Elm Street</label>
+              </div>
           </div>
           <!--- Accessible-->
           <div>
@@ -278,7 +312,16 @@ the word house in the name (Chase House, Ziskind house, etc, but NOT "Friedman a
   function initialize() {
     // grab the UI elements that we need to manipulate
     let houseTerm = document.querySelector('#houseTerm');
-    let area = document.querySelector('#area');
+    // get all 7 area values
+    let area_all = document.querySelector('#area_all');
+    let area_green_street = document.querySelector('#area_green_street');
+    let area_center_campus = document.querySelector('#area_center_campus');
+    let area_east_quad = document.querySelector('#area_east_quad');
+    let area_west_quad = document.querySelector('#area_west_quad');
+    let area_upper_elm_street = document.querySelector('#area_upper_elm_street');
+    let area_lower_elm_street = document.querySelector('#area_lower_elm_street');
+    // store all area variables into an array
+    let areas = [area_green_street, area_center_campus, area_east_quad, area_west_quad, area_upper_elm_street, area_lower_elm_street];
     let accessible = document.querySelector('#accessible');
     let elevator = document.querySelector('#elevator');
     let searchBtn = document.querySelector('button');
@@ -286,7 +329,13 @@ the word house in the name (Chase House, Ziskind house, etc, but NOT "Friedman a
 
     // keep a record of the last values of the elements
     let lastHouse = houseTerm.value;
-    let lastArea = area.value;
+    let last_area_all = area_all.checked;
+    let last_area_green_street = area_green_street.checked;
+    let last_area_center_campus = area_center_campus.checked;
+    let last_area_east_quad = area_east_quad.checked;
+    let last_area_west_quad = area_west_quad.checked;
+    let last_area_upper_elm_street = area_upper_elm_street.checked;
+    let last_area_lower_elm_street = area_lower_elm_street.checked;
     let lastAccessible = accessible.value;
     let lastElevator = elevator.value;
 
@@ -336,14 +385,28 @@ the word house in the name (Chase House, Ziskind house, etc, but NOT "Friedman a
       // if the all terms are the same as they were the last time a
       // search was run, the results will be the same, so there is no point running
       // it again — just return out of the function
-      if(houseTerm.value === lastHouse && area.value === lastArea && accessible.value === lastAccessible && elevator.value === lastElevator) {
+      if(houseTerm.value === lastHouse &&
+        area_all.checked === last_area_all.checked &&
+        area_green_street.checked === last_area_green_street.checked &&
+        area_center_campus.checked === last_area_center_campus.checked &&
+        area_east_quad.checked === last_area_east_quad.checked &&
+        area_west_quad.checked === last_area_west_quad.checked &&
+        area_upper_elm_street.checked === last_area_upper_elm_street.checked &&
+        area_lower_elm_street.checked === last_area_lower_elm_street.checked &&
+        accessible.value === lastAccessible && elevator.value === lastElevator) {
         return;
       } else {
         // update the record of last values
         lastHouse = houseTerm.value;
-        lastArea = area.value;
         lastAccessible = accessible.value;
         lastElevator = elevator.value;
+        last_area_all = area_all.checked;
+        last_area_green_street = area_green_street.checked;
+        last_area_center_campus = area_center_campus.checked;
+        last_area_east_quad = area_east_quad.checked;
+        last_area_west_quad = area_west_quad.checked;
+        last_area_upper_elm_street = area_upper_elm_street.checked;
+        last_area_lower_elm_street = area_lower_elm_street.checked;
         // In this case we want to select all houses, then filter them by the house
         // term, so we just set categoryGroup to the entire JSON object, then run selecthouses()
         if(houseTerm.value === '') {
@@ -372,26 +435,29 @@ the word house in the name (Chase House, Ziskind house, etc, but NOT "Friedman a
 
 
     /**
-     * Function to filter houses into areaGroup based on area value.
+     * Function to filter houses into areaGroup based on the areas that have been checked off.
      * selectAccessible() will be called at the end of this function.
      */
     function selectArea() {
       // if area value is all, then areaGroup remains the same as houseGroup
-      if(area.value === 'All') {
+      if(area_all.checked) {
         areaGroup = houseGroup;
         selectAccessible();
       // If a specific area is chosen, we need to filter out the houses not in that
       // area, then put the remaining houses inside areaGroup, before running
       // selectAccessible()
       } else {
-        // the values in the <option> elements are uppercase, whereas the categories
-        // store in the JSON (under "area") are lowercase. We therefore need to convert
-        // to lower case before we do a comparison
-        let lowerCaseArea = area.value.toLowerCase();
+        // put all values of the area variable that have been checked into an array
+        let checked = [];
+        for (let j = 0; j < areas.length; j++){
+          if (areas[j].checked){
+            checked.push(areas[j].value);
+          }
+        }
         for(let i = 0; i < houseGroup.length ; i++) {
-          // If a house's area of campus property is the same as the chosen category, we want to
+          // If a house's area of campus property is in checked, we want to
           // display it, so we push it onto the areaGroup array
-          if(houseGroup[i]["area_of_campus"] === lowerCaseArea) {
+          if(checked.includes(houseGroup[i]["area_of_campus"])){
             areaGroup.push(houseGroup[i]);
           }
         }
