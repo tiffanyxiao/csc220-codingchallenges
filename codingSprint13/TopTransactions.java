@@ -87,7 +87,7 @@ public class TopTransactions{
      */
       public int compare(Transaction a, Transaction b)
       {
-          return -(Float.compare(a.numberPart, b.numberPart));
+          return -(Float.compare(a.getNumberPart(), b.getNumberPart()));
       }
   }
 
@@ -108,6 +108,26 @@ public class TopTransactions{
     /** Method to print the transaction */
     public void printTransaction(){
       System.out.println(this.stringPart + " " + Float.toString(this.numberPart));
+    }
+
+    /** Getter for stringPart */
+    public String getStringPart(){
+      return this.stringPart;
+    }
+
+    /** Getter for numberPart */
+    public float getNumberPart(){
+      return this.numberPart;
+    }
+
+    /** Setter for stringPart */
+    public void setStringPart(String newString){
+      this.stringPart = newString;
+    }
+
+    /** Setter for numberPart */
+    public void setNumberPart(float newNumber){
+      this.numberPart = newNumber;
     }
   }
 }

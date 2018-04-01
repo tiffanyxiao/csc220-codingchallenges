@@ -1,0 +1,11 @@
+# FraudDetection.java
+## Objective
+write a program to flag potentially fraudulent transactions in the State of Oklahoma Purchase Card (PCard) Dataset for Fiscal Year 2014. This dataset contains information on purchases made through the purchase card programs administered by the state and higher ed institutions.
+
+## READING A FILE
+This program reads a file via command line argument.
+
+For example, to run the program with a file to be read, type: "java frauddetection filename" (after compiling)
+
+## Author
+Tiffany Xiao
