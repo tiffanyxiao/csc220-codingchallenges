@@ -7,5 +7,15 @@ This program reads a file via command line argument.
 
 For example, to run the program with a file to be read, type: "java frauddetection filename" (after compiling)
 
+## Project Choices
+### Data structures used
+Arraylist -
+Hashmap -
+### Displaying fraudulent transactions
+-description of why its printing out all sections
+### how to detect pawn shops, casinos and resorts
+### how to detect transactions whose value is unusually "round"
+### how to detect infrequently used airlines 
+
 ## Author
 Tiffany Xiao
