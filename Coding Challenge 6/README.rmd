@@ -18,13 +18,14 @@ The program stores all transactions (and fraudulent transactions) into an arrayl
 ### Displaying fraudulent transactions
 Our program simply outputs each transaction that is marked as fraudulent, and the reason(s) why the transaction was marked. We did this instead of grouping transactions by their reason, since there are multiple reasons why some transactions are marked. Instead of having duplicate transactions in separate groups, it may be more ideal to have a single copy of each fraudulent transaction. For example, in a situation in which someone has to alert all banks of fraudulent transactions, it would be more convenient to have a single list of all fraudulent transactions and alert banks of each transaction once (instead of having duplicate transactions, and then having to either figure out which ones are duplicate or having to submit two reports for the same transaction).
 
-### how to detect pawn shops, casinos and resorts
+### Detecting fraudulent transactions
+#### how to detect pawn shops, casinos and resorts
 To detect pawn shops, casinos and resorts transactions, we looked at the MCC and detected if "pawn", "casino" or "resort" was contained inside the MCC field. We used this method because it seemed to provide the most accurate detection for if the vendor is a pawn shop, casino or resort, instead of using the vendor field (sometimes, the name of the vendor does not indicate if it's a pawn shop, casino or resort).
 
-### how to detect transactions whose value is unusually "round"
+#### how to detect transactions whose value is unusually "round"
 To detect unusually round transactions, we looked for transactions that were perfectly divisible by 100. 100 seemed like a reasonable number to choose since using a larger number (i.e. 5000) would be divisible by 100 anyways. Using a smaller number (i.e. 10) does not seem to give results that are too unusual, as a number such as 1410 seems specific (and thus, not unusual).
 
-### how to detect infrequently used airlines
+#### how to detect infrequently used airlines
 We used a similar method as detecting pawn shops, casinos and resorts in which we looked at the MCC and determined if the word "airline" was contained inside the MCC. Once again, this is because it seems more accurate than using the vendor name since the vendor name sometimes does not indicate if it's a pawn shop, casino or resort.
 
 ## Authors
