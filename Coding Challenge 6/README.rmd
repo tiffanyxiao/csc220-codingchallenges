@@ -1,6 +1,6 @@
 # FraudDetection.java
 ## Objective
-write a program to flag potentially fraudulent transactions in the State of Oklahoma Purchase Card (PCard) Dataset for Fiscal Year 2014. This dataset contains information on purchases made through the purchase card programs administered by the state and higher ed institutions.
+Write a program to flag potentially fraudulent transactions in the State of Oklahoma Purchase Card (PCard) Dataset for Fiscal Year 2014. This dataset contains information on purchases made through the purchase card programs administered by the state and higher ed institutions.
 
 ## READING A FILE
 This program reads a file via command line argument (must be full path to file).
@@ -28,7 +28,10 @@ To detect unusually round transactions, we looked for transactions that were per
 #### how to detect infrequently used airlines
 We used a similar method as detecting pawn shops, casinos and resorts in which we looked at the MCC and determined if the word "airline" was contained inside the MCC. Once again, this is because it seems more accurate than using the vendor name since the vendor name sometimes does not indicate if it's a pawn shop, casino or resort.
 
+## Extra credit
+We also implemented detection of transactions with "invalid" descriptions. This includes marking descriptions that are empty, just 0, contains "PCE" or is just a numeric.
+
 ## Authors
 Tiffany Xiao and Karen Santamaria
 ## Version
-4.3.18
+4.4.18
