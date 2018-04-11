@@ -1,4 +1,4 @@
-function merge(arr, left, m, right):
+function merge(arr, left, m, right)
     """ Helper function for mergeSort(), merges two subarrays of arr """
     # convert all parameters to ints
     left = convert(Int64, floor(left))
@@ -44,7 +44,7 @@ function merge(arr, left, m, right):
     end
 end
 
-function mergeSort(arr, left, right):
+function mergeSort(arr, left, right)
     """ Function implements mergeSort algorithm with helper function merge() """
     if left < right
         # find the middle point to divide the array into two halves
@@ -58,19 +58,18 @@ function mergeSort(arr, left, right):
     end
 end
 
-function compute(k)
-    """ Function creates array of random ints of size 10^k, then calls mergeSort on the array """
+function main(arr)
+    """ Function calls mergeSort on inputted array """
+    println("Given array is $arr")
+    mergeSort(arr, 1, length(arr))
+    println("Sorted array is $arr")
+end
+
+function generateRand(k)
+    """ Function to generate random ints of size 10^k """
     num_list = [rand(1: 10^k) for i in 1:(10^k)]
-    println("Given array is $num_list")
-    mergeSort(num_list, 1, (10^k))
-    println("Sorted array is $num_list")
+    return num_list
 end
 
-function main()
-    """ Function calls compute() on k = [1, ..., 7] """
-    for i = 1:7
-        compute(i)
-    end
-end
-
-main()
+arr = generateRand(2)
+main(arr)

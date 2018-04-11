@@ -53,16 +53,16 @@ def mergeSort(arr, left, right):
         # merge the two halves sorted
         merge(arr, left, m, right)
 
-def compute(k):
-    ''' Function creates array of random ints of size 10^k, then calls mergeSort on the array'''
+def main(arr):
+    """ Function calls mergeSort on inputted array """
+    print("Given array is",arr)
+    mergeSort(arr, 0, len(arr)-1)
+    print("Sorted array is",arr)
+
+def generateRand(k):
+    """ Function to generate random ints of size 10^k """
     num_list = [random.randint(1,10**k) for i in range(10**k)]
-    print("Given array is", num_list)
-    mergeSort(num_list, 0, (10**k)-1)
-    print("Sorted array is", num_list)
+    return num_list
 
-def main():
-    ''' Function calls compute() on k = [1, ..., 7] '''
-    for i in range(1,8):
-        compute(i)
-
-main()
+arr = generateRand(2)
+main(arr)
