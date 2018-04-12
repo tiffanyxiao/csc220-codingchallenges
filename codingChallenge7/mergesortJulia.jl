@@ -1,16 +1,16 @@
-function merge(arr, left, m, right)
+function merge(arr, left, mid, right)
     """ Helper function for mergeSort(), merges two subarrays of arr """
     # convert all parameters to ints
     left = convert(Int64, floor(left))
-    m = convert(Int64, floor(m))
+    mid = convert(Int64, floor(mid))
     right = convert(Int64, floor(right))
 
-    n1 = m - left + 1
-    n2 = right - m
+    pos1 = mid - left + 1
+    pos2 = right - mid
 
     # copy data into temporary arrays L and R
-    L = [arr[left+i] for i in 0:n1-1]
-    R = [arr[m+1+j] for j in 0:n2-1]
+    L = [arr[left+i] for i in 0:pos1-1]
+    R = [arr[mid+1+j] for j in 0:pos2-1]
 
     # intialize indexes of temp arrays
     i = 1
@@ -18,7 +18,7 @@ function merge(arr, left, m, right)
     k = left
 
     # merge temp arrays back into main array
-    while i < n1+1 && j < n2+1
+    while i < pos1+1 && j < pos2+1
         if L[i] <= R[j]
             arr[k] = L[i]
             i += 1
@@ -30,14 +30,14 @@ function merge(arr, left, m, right)
     end
 
     # copy remaining elements of L (if there are any)
-    while i < n1+1
+    while i < pos1+1
         arr[k] = L[i]
         i += 1
         k += 1
     end
 
     # copy remaining elements of R (if there are any)
-    while j < n2+1
+    while j < pos2+1
         arr[k] = R[j]
         j += 1
         k += 1
@@ -48,13 +48,13 @@ function mergeSort(arr, left, right)
     """ Function implements mergeSort algorithm with helper function merge() """
     if left < right
         # find the middle point to divide the array into two halves
-        m = (left+(right-1))/2
+        mid = (left+(right-1))/2
         # call mergesort for first half
-        mergeSort(arr, left, m)
+        mergeSort(arr, left, mid)
         # call mergesort for second half
-        mergeSort(arr, m+1, right)
+        mergeSort(arr, mid+1, right)
         # merge the two halves sorted
-        merge(arr, left, m, right)
+        merge(arr, left, mid, right)
     end
 end
 

@@ -5,21 +5,21 @@ public class MergeSort{
      *
      * @param arr main array to check
      * @param left left index
-     * @param m middle index
+     * @param mid middle index
      * @param right right index
      */
-    public void merge(int arr[], int left, int m, int right){
-        int n1 = m - left + 1;
-        int n2 = right - m;
+    public void merge(int arr[], int left, int mid, int right){
+        int pos1 = mid - left + 1;
+        int pos2 = right - mid;
 
         // copy data into temporary arrays L and R
-        int L[] = new int [n1];
-        int R[] = new int [n2];
+        int L[] = new int [pos1];
+        int R[] = new int [pos2];
 
-        for (int i=0; i<n1; ++i)
+        for (int i=0; i<pos1; ++i)
             L[i] = arr[left + i];
-        for (int j=0; j<n2; ++j)
-            R[j] = arr[m+1+j];
+        for (int j=0; j<pos2; ++j)
+            R[j] = arr[mid+1+j];
 
         // Initial indexes of first and second subarrays
         int i = 0;
@@ -27,7 +27,7 @@ public class MergeSort{
         int k = left;
 
         // merge temp arrays back into main array
-        while (i < n1 && j < n2){
+        while (i < pos1 && j < pos2){
             if (L[i] <= R[j]){
                 arr[k] = L[i];
                 i++;
@@ -39,14 +39,14 @@ public class MergeSort{
         }
 
         // copy remaining elements of L (if there are any)
-        while (i < n1){
+        while (i < pos1){
             arr[k] = L[i];
             i++;
             k++;
         }
 
         // copy remaining elements of R (if there are any)
-        while (j < n2){
+        while (j < pos2){
             arr[k] = R[j];
             j++;
             k++;
@@ -63,13 +63,13 @@ public class MergeSort{
     public void sort(int arr[], int left, int right){
         if (left < right){
             // find the middle point to divide the array into two halves
-            int m = (left+right)/2;
+            int mid = (left+right)/2;
             // call mergesort for first half
-            sort(arr, left, m);
+            sort(arr, left, mid);
             // call mergesort for second half
-            sort(arr , m+1, right);
+            sort(arr , mid+1, right);
             // merge the two halves sorted
-            merge(arr, left, m, right);
+            merge(arr, left, mid, right);
         }
     }
 

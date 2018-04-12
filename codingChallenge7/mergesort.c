@@ -1,17 +1,17 @@
 #include<stdlib.h>
 #include<stdio.h>
 
-void merge(int arr[], int left, int m, int right){
+void merge(int arr[], int left, int mid, int right){
     int i, j, k;
-    int n1 = m - left + 1;
-    int n2 =  right - m;
+    int pos1 = mid - left + 1;
+    int pos2 =  right - mid;
 
     // copy data into temporary arrays L and R
-    int L[n1], R[n2];
-    for (i = 0; i < n1; i++)
+    int L[pos1], R[pos2];
+    for (i = 0; i < pos1; i++)
         L[i] = arr[left + i];
-    for (j = 0; j < n2; j++)
-        R[j] = arr[m + 1+ j];
+    for (j = 0; j < pos2; j++)
+        R[j] = arr[mid + 1+ j];
 
     // intialize indexes of temp arrays
     i = 0;
@@ -19,14 +19,12 @@ void merge(int arr[], int left, int m, int right){
     k = left;
 
     // merge temp arrays back into main array
-    while (i < n1 && j < n2){
-        if (L[i] <= R[j])
-        {
+    while (i < pos1 && j < pos2){
+        if (L[i] <= R[j]){
             arr[k] = L[i];
             i++;
         }
-        else
-        {
+        else{
             arr[k] = R[j];
             j++;
         }
@@ -34,14 +32,14 @@ void merge(int arr[], int left, int m, int right){
     }
 
     // copy remaining elements of L (if there are any)
-    while (i < n1){
+    while (i < pos1){
         arr[k] = L[i];
         i++;
         k++;
     }
 
     // copy remaining elements of R (if there are any)
-    while (j < n2){
+    while (j < pos2){
         arr[k] = R[j];
         j++;
         k++;
@@ -54,13 +52,13 @@ void mergeSort(int arr[], int left, int right){
     if (left < right){
         // Same as (l+r)/2, but avoids overflow for
         // large l and h
-        int m = left+(right-left)/2;
+        int mid = left+(right-left)/2;
 
         // Sort first and second halves
-        mergeSort(arr, left, m);
-        mergeSort(arr, m+1, right);
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid+1, right);
 
-        merge(arr, left, m, right);
+        merge(arr, left, mid, right);
     }
 }
 
