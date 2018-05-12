@@ -306,7 +306,7 @@ Also implements the extra credit (include links to each floor).
     // use fetch to retrieve the house data, and report any errors that occur in the fetch operation
     // once the houses have been successfully loaded and formatted as a JSON object
     // using response.json(), run the initialize() function
-    fetch('house2.json').then(function (response) {
+    fetch('houses.json').then(function (response) {
         if (response.ok) {
             response.json().then(function (json) {
                 houses = json;
